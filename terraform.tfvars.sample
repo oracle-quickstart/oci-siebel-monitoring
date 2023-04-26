@@ -33,6 +33,6 @@ log_group_ocid="<LOG_GROUP_OCID>"
 la_entity_name="TestSiebel-DB"
 
 # Selected products
-products="Oracle Advanced Benefits,Oracle Workflow"
+products="Siebel CRM, Siebel System Admin, Siebel Workflow, Siebel Remote, Siebel Loyalty, Siebel Client Functionality, Siebel Reports"
 
-#products="Oracle Advanced Benefits,Oracle Advanced Supply Chain Planning,Oracle Approvals Management,Oracle Assets,Oracle Cash Management,Oracle Cost Management,Oracle E-Business Suite Technology Stack,Oracle Financials for EMEA,Oracle General Ledger,Oracle HRMS (UK),Oracle Human Resources,Oracle Inventory Management,Oracle iProcurement,Oracle Materials Requirement Planning,Oracle Order Management,Oracle Payables,Oracle Payroll,Oracle Process Manufacturing Financials,Oracle Process Manufacturing Process Execution,Oracle Project Billing,Oracle Project Costing,Oracle Project Planning and Control,Oracle Public Sector Financials,Oracle Purchasing,Oracle Receivables,Oracle Shipping Execution,Oracle Time and Labor,Oracle Trading Community,Oracle Work in Process,Oracle Workflow
+#products="Siebel CRM, Siebel System Admin, Siebel Workflow, Siebel Remote, Siebel Loyalty, Siebel Client Functionality, Siebel Reports"

@@ -1,5 +1,5 @@
 # Siebel-SENSORS
-Oracle Logging Analytics can help you identify E Business Suite issues to make your business operations smooth to delight your customers. This resource manager stack configures logging analytics to enable these functional sensors such as:
+Oracle Logging Analytics can help you identify Siebel CRM issues to make your business operations smooth to delight your customers. This resource manager stack configures logging analytics to enable these functional sensors such as:
 
 Anomaly Detection
 Which component is failing
@@ -97,9 +97,9 @@ log_group_ocid="<LOG_GROUP_OCID>"
 la_entity_name = "<SiebelDB entity name>"
 
 # Selected products
-#products="Oracle Advanced Benefits,Oracle Advanced Supply Chain Planning,Oracle Approvals Management,Oracle Assets,Oracle Cash Management,Oracle Cost Management,Oracle E-Business Suite Technology Stack,Oracle Financials for EMEA,Oracle General Ledger,Oracle HRMS (UK),Oracle Human Resources,Oracle Inventory Management,Oracle iProcurement,Oracle Materials Requirement Planning,Oracle Order Management,Oracle Payables,Oracle Payroll,Oracle Process Manufacturing Financials,Oracle Process Manufacturing Process Execution,Oracle Project Billing,Oracle Project Costing,Oracle Project Planning and Control,Oracle Public Sector Financials,Oracle Purchasing,Oracle Receivables,Oracle Shipping Execution,Oracle Time and Labor,Oracle Trading Community,Oracle Work in Process,Oracle Workflow"
+#products="Siebel CRM"
 
-products="Oracle Advanced Benefits,Oracle Workflow"
+products="Siebel CRM, Siebel System Admin, Siebel Workflow, Siebel Remote, Siebel Loyalty, Siebel Client Functionality, Siebel Reports"
 
 ### Create the Resources
 Run the following commands:

@@ -90,42 +90,19 @@ variables:
     description: Select the products. 
     required: true
     enum: 
-    - Oracle Advanced Benefits
-    - Oracle Advanced Supply Chain Planning
-    - Oracle Approvals Management
-    - Oracle Assets
-    - Oracle Cash Management
-    - Oracle Cost Management
-    - Oracle E-Business Suite Technology Stack
-    - Oracle Financials for EMEA
-    - Oracle General Ledger
-    - Oracle HRMS (UK)
-    - Oracle Human Resources
-    - Oracle Inventory Management
-    - Oracle iProcurement
-    - Oracle Materials Requirement Planning
-    - Oracle Order Management
-    - Oracle Payables
-    - Oracle Payroll
-    - Oracle Process Manufacturing Financials
-    - Oracle Process Manufacturing Process Execution
-    - Oracle Project Billing
-    - Oracle Project Costing
-    - Oracle Project Planning and Control
-    - Oracle Public Sector Financials
-    - Oracle Purchasing
-    - Oracle Receivables
-    - Oracle Shipping Execution
-    - Oracle Time and Labor
-    - Oracle Trading Community
-    - Oracle Work in Process
-    - Oracle Workflow
+    - Siebel CRM
+    - Siebel System Admin
+    - Siebel Workflow
+    - Siebel Remote, 
+    - Siebel Loyalty
+    - Siebel Client Functionality
+    - Siebel Reports 
     additionalProps:
       allowMultiple: true
       minItems: 1
       uniqueItems: true
-    default: Oracle Advanced Benefits, Oracle Workflow
-    #default: ["Oracle Advanced Benefits", "Oracle Advanced Supply Chain Planning", "Oracle Approvals Management", "Oracle Assets",  "Oracle Cash Management", "Oracle Cost Management", "Oracle E-Business Suite Technology Stack", "Oracle Financials for EMEA", "Oracle General Ledger", "Oracle HRMS (UK)", "Oracle Human Resources", "Oracle Inventory Management", "Oracle iProcurement", "Oracle Materials Requirement Planning",  "Oracle Order Management",  "Oracle Payables",  "Oracle Payroll",  "Oracle Process Manufacturing Financials", "Oracle Process Manufacturing Process Execution", "Oracle Project Billing", "Oracle Project Costing", "Oracle Project Planning and Control", "Oracle Public Sector Financials", "Oracle Purchasing", "Oracle Receivables", "Oracle Shipping Execution", "Oracle Time and Labor", "Oracle Trading Community", "Oracle Work in Process", "Oracle Workflow"]
+    default: Siebel CRM
+    #default: ["Siebel System Admin", "Siebel Workflow", "Siebel Remote", "Siebel Loyalty", "Siebel Client Functionality", "Siebel Reports"]
 
   db_compartment:
     type: oci:identity:compartment:id
@@ -135,6 +112,7 @@ variables:
     default: compartment_ocid
 
   vcn_ocid:
+    title: Select existing VCN
     title: Select existing VCN
     type: oci:core:vcn:id
     dependsOn:
