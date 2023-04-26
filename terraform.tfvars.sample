@@ -15,7 +15,7 @@ db_credentials="<VAULT_SECRET_OCID>"
 db_user_role="NORMAL"
 
 subnet_ocid="<DB_NETWORK_SUBNET_OCID>"
-instance_name="EBSAgentVM"
+instance_name="SiebelAgentVM"
 availability_domain="<AD>"
 instance_shape="VM.Standard.E2.1"
 user_ssh_secret="<SSH-KEY>"
@@ -24,13 +24,13 @@ user_ssh_secret="<SSH-KEY>"
 setup_policies=true
 
 bucket_name="<BUCKET_NAME>"
-file_name="logan_schedule_database_sql_EBS.csv"
+file_name="logan_schedule_database_sql_Siebel.csv"
 
 resource_compartment="<RESOURCE_COMPARTMENT_OCID>"
 create_log_group=false
 log_group_ocid="<LOG_GROUP_OCID>"
-# Name of LA Entity for EBS-DB
-la_entity_name="TestEBS-DB"
+# Name of LA Entity for Siebel-DB
+la_entity_name="TestSiebel-DB"
 
 # Selected products
 products="Oracle Advanced Benefits,Oracle Workflow"

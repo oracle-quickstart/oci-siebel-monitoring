@@ -1,12 +1,12 @@
 # Copyright (c) 2022, Oracle and/or its affiliates.
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl.
 
-title: "Oracle E-Buisiness Suite Log Collection Quick Start"
+title: "Oracle Siebel CRM Log Collection Quick Start"
 
-description: "Monitoring EBS using Management Agent"
+description: "Monitoring Siebel using Management Agent"
 
 stackDescription: "
-Monitors EBS Logs using Management Agent deployed on a new Compute Instance after applying necessary Dynamic Groups and Policies. 
+Monitors Siebel Logs using Management Agent deployed on a new Compute Instance after applying necessary Dynamic Groups and Policies. 
 Logging Analytics plugin on the agent is also deployed to assist with the monitoring.
 This stack enables Source-Entity Auto Association in Logging Analytics which can be disabled later 
 if auto association of entities is not desired.
@@ -130,7 +130,7 @@ variables:
   db_compartment:
     type: oci:identity:compartment:id
     title: Select DB Compartment
-    description: The compartment where your EBS DB resides
+    description: The compartment where your Siebel DB resides
     required: true
     default: compartment_ocid
 
@@ -157,7 +157,7 @@ variables:
     required: true
     visible: true
     description: The Compute Instance where Management Agent will be deployed
-    default: EBS-MgmtAgent
+    default: Siebel-MgmtAgent
     
   availability_domain:
     title: Availability domain
@@ -187,20 +187,20 @@ variables:
   db_host:
     type: string
     title: DB Host Name
-    description: The host for EBS Database.
+    description: The host for Siebel Database.
     required: true
 
   db_port:
     type: number
     title: DB Port
-    description: The port for EBS Database.
+    description: The port for Siebel Database.
     required: true
     default: 1521
 
   db_service:
     type: string
     title: DB Service Name
-    description: Service name for EBS Database.
+    description: Service name for Siebel Database.
     required: true
 
   db_cred_compartment:
@@ -252,23 +252,23 @@ variables:
   la_entity_name:
     type: string
     title: "Log Analytics Entity Name"
-    description: "Entity Name for EBS DB in Log Analytics."
+    description: "Entity Name for Siebel DB in Log Analytics."
     required: true
-    default: "EBS-DB"
+    default: "Siebel-DB"
 
   bucket_name:
     type: string
     title: "Object Storage Bucket Name"
     description: "Object Storage bucket name where schedule file is stored."
     required: true
-    default: ebs_sensors_schedule
+    default: siebel_sensors_schedule
 
   file_name:
     type: string
     title: "Schedule File Object Name"
     description: "The name of object for Schedule file."
     required: true
-    default: logan_schedule_database_sql_EBS.csv 
+    default: logan_schedule_database_sql_Siebel.csv 
 
   create_log_group:
     type: boolean
