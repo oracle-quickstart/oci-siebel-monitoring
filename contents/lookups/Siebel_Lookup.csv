@@ -1,0 +1,1059 @@
+Metric Name,SQL Statement,Solution KM Note,Solution for the issue,Application Code,Issue Summary,Issue Description,Issue Severity,Product to raise SR if help needed,Sr Component,Sr Sub Component,Scheduling,Scheduling Details,Business Flow,Business Impact,Prod Family,Prod Area
+SIEBEL_LONGRUNNINGWF_FULLMIGRATION,"SELECT
+COUNT(row_id) AS Event,
+'Workflow Process Manager Resume Workflow Instance Is Not Working For Interactive Workflow With Wait Step or Long Running Workflow (LRWF) After a Full Migration (Doc ID 2816261.1)' AS Solution
+FROM
+SIEBEL.s_wfa_instance
+WHERE
+definition_id NOT IN (
+SELECT
+row_id
+FROM
+SIEBEL.s_rr_workflow
+WHERE
+repository_id =(
+SELECT
+row_id
+FROM
+SIEBEL.s_repository
+WHERE
+NAME = 'Siebel Repository'
+)
+)",2816261.1,"The BUG: 33240621 has been confirmed by Oracle Development team.
+
+A potential workaround is to manually update the workflow instances records Definition Id field to the corresponding new workflow ID in S_RR_WORKFLOW created by Full Migration.
+
+On Siebel CRM 21.10 a new feature to rename the Runtime Repository and copy the old workflow definitions in S_RR_WORKFLOW from previous Runtime Repository will maintain the integrity of Long Running Workflow or Persists Workflows.
+
+Please refer to Bookshelf> Database Upgrade Guide > 21 Data Migration Using Siebel Migration> Full Runtime Repository Migration Without Using Siebel Migration > Step 12. Rename the Migrated Repository in the target environment",,,,3,Siebel Workflow,WRKFLWQ4207,PRCSSMNGQ4207,WEEK,SUN,P2P: Purchasing,Only affects customer using Long Running Workflows or Persistence WFs (not very common) and after executing a Full Migration on Target RR environment.,Siebel - CRM,Siebel CRM
+SIEBEL_ORDERMANAGEMENT_INCORRECTDUEDATE,"SELECT
+'ORDERMANAGEMENT INCORRECTDUEDATE ' || ' COUNT= ' || COUNT(*) KEY_DATA,
+'Incorrect Due Date At Order Line Item Level (Doc ID 2632713.1)' AS SOLUTION,
+count(*) as EVENT_RAISED
+FROM SIEBEL.S_RR_BUSCOMP WHERE NAME = 'Order Entry - Line Items' 
+and COMPILED_OBJ_DEFN like '%ParentFieldValue(""""Requested Ship Date"""") > Today()%' 
+and REPOSITORY_ID = (SELECT ROW_ID from SIEBEL.S_REPOSITORY where name = 'Siebel Repository')
+and (SELECT 
+count(*)
+FROM SIEBEL.S_RR_BUSCOMP
+WHERE NAME = 'Order Entry - Orders' and COMPILED_OBJ_DEFN like '%Requested Ship Date%'
+and REPOSITORY_ID = (SELECT ROW_ID from SIEBEL.S_REPOSITORY where name = 'Siebel Repository') 
+and (substr(COMPILED_OBJ_DEFN,instr(COMPILED_OBJ_DEFN,'Requested Ship Date')+19, 
+(instr(COMPILED_OBJ_DEFN,'Field',(instr(COMPILED_OBJ_DEFN,'Requested Ship Date')),2)-(instr(COMPILED_OBJ_DEFN,'Requested Ship Date')+19)))) like '%DTYPE_UTCDATETIME%') > 0",2632713.1,"To fix the issue:
+
+Open Siebel Tools
+Go to ""Order Entry - Line Items"" BC
+Create a Field, Name = ""Header_DueDate"" , Calculated = Y, Calculated Value = ""IIf (ParentBCName () = ""Order Entry - Orders"", ParentFieldValue(""Requested Ship Date""), Today() + 1)"", Type=DTYPE_DATE, Link Specification = Y
+Modify ""Due Date"" field to have predefaultvalue of :  Expr: ""IIf (ParentBCName () = """"Order Entry - Orders"""", IIF ([Header_DueDate] >= Today(), ParentFieldValue(""""Requested Ship Date""""), Today() + 1),  Today() + 1)""",,,,2,Siebel Product Configurator,COM,,WEEK,WED,,"This is a existing bug, but Development has closed the bug with a repistory fix. meaning this will be never pushed to customer. so it would be better to push this to all the customer who are using order management functionality
+
+Ref: Incorrect Due Date At Order Line Item Level (Doc ID 2632713.1)",Siebel - CRM,Siebel CRM
+SIEBEL_MKT_CAL_INVITATION_STATUS,"SELECT
+'Y' AS Event,
+'Siebel Marketing - Schedule Campaigns Not Executing Via Programs And Recurring Campaigns. (Doc ID 2286524.1)' AS Solution,
+'Active flag= ' || active_flg || ' Type= ' || type || ' Value= ' || val || ' Language= ' || lang_id AS Key_data
+FROM
+SIEBEL.s_lst_of_val
+WHERE
+UPPER(type) = 'CAL_INVITATION_STATUS'
+AND UPPER(active_flg) = 'N'
+AND UPPER(lang_id) = 'ENU'",2286524.1,"To fix the issue, please follow below steps:
+
+Go to Administration Data - List of values and activate all the value under LOV: CAL_INVITATION_STATUS",,Error SBL-DAT-00225 when Launching a Campaign,,3,Siebel Marketing,MRKTNGQ3647,CMPGNMNGQ3647,WEEK,MON,,Any Campaign scheduled will be executed so Offers will not be processed and sent to the target clients.,Siebel - CRM,Siebel CRM
+SIEBEL_WKF_ACTIVE,"SELECT  A.NAME || ' Workflow is inactive' AS KEY_DATA, 
+'Proposed Solution: List Import Is Not Working In 811 After Upgrade (Doc ID 1148993.1)' as SOLUTION,
+'Y' AS EVENT_RAISED
+from SIEBEL.S_WFA_DPLOY_DEF a
+WHERE NAME = 'Mktg Import File Processing' 
+AND DEPLOY_STATUS_CD = 'INACTIVE'",1148993.1,"In IP17 up to 20.6
+1- In DR environment logon to Siebel Tools or Siebel Webtools
+
+2- Create a Workspace
+
+3- Locate the Workflow Processes listed below
+
+4- Activate the Workflows by setting Inactive = N
+
+5- Deliver the Workspace to MAIN
+
+6- In DR, logon to the Siebel Application and navigate to Administration - Business Process > Workflow Deployment
+
+7- Locate the Workflow Processes listed below
+
+8- Click in ""Activate""
+
+9- Run Incremental Migration to have the Workflows migrated to RR
+
+
+ In 20.7 on
+1- In DR environment logon to Siebel Tools or Siebel Webtools
+
+2- Create a Workspace
+
+3- Locate the Workflow Processes listed below
+
+4- Activate the Workflows by setting Inactive = N
+
+5- Deliver the Workspace to MAIN
+
+6- Run Incremental Migration to have the Workflows updated in the S_RR_WORKFLOW Table.",,,,2,Siebel Marketing,MRKTNGQ3647,LSTMNGMNQ3647,DAY,1,,An error will occur when running List Import if the Workflow used is not active in the application.,Siebel - CRM,Siebel CRM
+SIEBEL_LOY_EXPIRATION_DATE_ACCRUAL,"SELECT 
+'LOYALITY_EXPIRED_DATE_ACCRUAL COUNT IS ' || COUNT(*) KEY_DATA,
+'Proposed solution: Member Expired Points Not Subtracted From Available Points Balance (Doc ID 2506707.1)' AS SOLUTION,
+count(*) as EVENT_RAISED
+ FROM 
+ SIEBEL.S_LOY_ACRL_ITM T1, 
+ SIEBEL.S_LOY_RDM_ITM T2 
+ WHERE 
+ T1.EXPIRATION_DT <= sysdate AND
+ T1.ROW_ID <> T2.ACCRUAL_ITEM_ID AND 
+ T1.USED_VALUE = 0 AND 
+ T2.TYPE_CD='Expired'
+ GROUP BY 
+ T2.TYPE_CD",2506707.1,"To implement the solution, please execute the following steps:
+
+Navigate to Administration - Server configuration > Server
+
+Select server name
+
+In the Child view of Components > Assigned Components
+
+Query for *oyalt* and then select the “Loyalty batch engine” component
+
+The grandchild applet includes the parameters applet
+
+Query for ""LOY - Engine Queue Objects""
+
+The value of ""Accrual"" must be added to this parameter with a numerical values, for example: Accrual:10
+
+Retest the issue
+
+Migrate the solution as appropriate to other environments",,,,2,Siebel Loyalty Manager,LOYALTYQ3637,TRNSCTNNQ3637,DAY,1,,Points are not being subtracted from available points balance led the member to think that they have more points than actually have.,Siebel - CRM,Siebel CRM
+SIEBEL_LOY_VOUCHER_EXPIRY,"SELECT ('EXPIRATION_DT = ' || EXPIRATION_DT || ';  VOUCHER EFF START DATE= ' || VCHR_EFF_START_DT || '; STATUS_CD = ' || STATUS_CD) AS KEY_DATA, 
+'Proposed solution: Siebel Loyalty Vouchers - Incorrect Expiration Date (Doc ID 2308330.1)' AS SOLUTION, 
+'Y' as EVENT_RAISED
+FROM SIEBEL.S_LOY_MEM_VCHR 
+WHERE 
+EXPIRATION_DT <= VCHR_EFF_START_DT 
+AND STATUS_CD = 'Expired'",2308330.1,"To address this, perform the following steps:
+
+1. In Siebel tools:
+Query for this BC: LOY Voucher
+
+Select this field and query for this field: Expiration In Days
+
+Change the calculated value from:
+
+“[Voucher Expired Date] - [Voucher Issued Date] -1”
+
+TO
+
+IIF([Expiration UOM] = LookupValue(""LOY_LEAD_TIME_CD"", ""Days""), [Voucher Expired Date] - [Voucher Issued Date] -1 + [Expiration Lead Time], [Voucher Expired Date] - [Voucher Issued Date] -1)
+
+
+“Expiration Lead Time” is time period in number of days of “Expiration period type” days.
+
+
+2. In Siebel Application:
+
+Go to Administration – Data -> List of Values
+
+Create the below record if it is not there (Similar to Months and Years LOV)
+
+
+Type: LOY_LEAD_TIME_CD
+
+Display Value: Days
+
+Language Independent Code: Days
+
+Replication Level: All
+
+Active: Yes
+
+Translate: Yes
+
+Order: 1",,,,3,Siebel Loyalty Manager,LOYALTYQ3637,TRNSCTNNQ3637,WEEK,TUE,,"Member will have expired Voucher , they wont be able to redeem it.",Siebel - CRM,Siebel CRM
+SIEBEL_COMMSERVER_WF_PARAMETER,"SELECT
+('ROW_ID = ' || t1.row_id || '; CREATED = ' || t1.CREATED || '; RESPONSE GROUP NAME = ' ||T1.NAME || '; DFLT_VAL = ' || T2.DFLT_VAL ) AS KEY_DATA,
+'Proposed solution: Inbound Emails Are Not Processed and .EVT Files Are Converted to .Error Files (Doc ID 2642497.1)' AS SOLUTION, 
+'Y' as EVENT_RAISED
+   FROM 
+       SIEBEL.S_CM_INGRP T1
+       left join 
+       SIEBEL.S_CM_INGRP_PROP T2
+       ON 
+       t1.row_id=t2.cm_ingrp_id
+       WHERE NVL(T2.NAME,'NA') IN ('ProcessName','NA')
+       AND NOT EXISTS (SELECT NAME FROM S_WFA_DPLOY_DEF A WHERE A.DEPLOY_STATUS_CD='ACTIVE' AND T2.DFLT_VAL=A.NAME)   ",2642497.1,"To fix the issue:
+
+1.Go to Administration - communications - Response Group
+2.Drill down on the response group and navigate to Input arguments
+3.Add the input argument with name as 'ProcessName' and value as the workflow name
+4.Submit the Response Group Changes",,,,2,Siebel Email Response,CMSRVMLQ3260,CMMRQSTQ3260,WEEK,MON,Accounting to Financial Reports: Reporting,Not providing correct Workflow name will cause failure of inbound process and might cause piling up of requests and could end up in Communication inbound receiver crash as well.,Siebel - CRM,Interaction
+SIEBEL_CRASH_IDENTIFIER," SELECT
+('ROW_ID = ' || C.row_id ||'; WEB_TEMPLATE_NAME = ' || C.NAME || '; C.LAST_UPDATE = ' || C.LAST_UPD || '; B.NAME = ' || B.NAME || '; NAME = ' || A.NAME || '; NAME = ' || A.CTRL_NAME 
+|| '; REPOS = ' || A.REPOS_TYPE  || '; ITEM_NUM = ' || A.ITEM_NUM ) AS KEY_DATA,
+'Proposed solution: Identifiers divisible by 1000 may cause component crashes (Doc ID 795772.1)' AS SOLUTION, 
+'Y' as EVENT_RAISED
+FROM 
+SIEBEL.S_APPL_WTMPL_IT A,
+SIEBEL.S_APPL_WEB_TMPL B, 
+SIEBEL.S_APPLET C 
+WHERE  
+B.ROW_ID=A.APPL_WEB_TMPL_ID
+AND C.ROW_ID=B.APPLET_ID 
+AND A.REPOS_TYPE='Control' 
+AND B.INACTIVE_FLG='N' 
+AND C.INACTIVE_FLG='N' 
+AND MOD(A.ITEM_NUM,1000)=0 
+AND C.LAST_UPD >'06-APR-2016'",795772.1,"The following query can be used to identify some grid layout element that is beyond addressable memory and can lead to heap memory corruption:
+
+SELECT C.NAME, C.LAST_UPD, B.NAME, A.NAME, A.CTRL_NAME, A.REPOS_TYPE, A.ITEM_NUM FROM SIEBEL.S_APPL_WTMPL_IT A,SIEBEL.S_APPL_WEB_TMPL B, SIEBEL.S_APPLET C WHERE MOD(A.ITEM_NUM,1000)=0 AND
+B.ROW_ID=A.APPL_WEB_TMPL_ID AND
+C.ROW_ID=B.APPLET_ID AND
+A.REPOS_TYPE='Control' AND
+B.INACTIVE_FLG='N' AND
+C.INACTIVE_FLG='N' AND
+C.LAST_UPD >= '2006/1/1 00:00:00';
+
+This solution is related to the following document where similar behavior was encountered with different call stack:
+
+    Identifiers divisible by 1000 may cause component crashes (Doc ID 795772.1)",,,,2,Siebel Tools,CNFGGNRLQ4039,APPLCTNCQ4039,MONTH,1,Discrete Manufacturing,Application crashes causing user session terminated .,Siebel - CRM,Siebel CRM
+SIEBEL_NUM_WORKSPACE_ENABLED_REPOSITORIES,"SELECT 
+count(row_id) as EVENT_RAISED,
+LISTAGG(NAME, '; ')
+WITHIN GROUP (ORDER BY NAME) ""KEY_DATA"",
+'Proposed solution: IP18 PS6: Issue With Display Override Value On Applets (Doc ID 2453356.1)' AS SOLUTION
+FROM SIEBEL.S_REPOSITORY A 
+WHERE (A.INACTIVE_FLG IS NULL OR INACTIVE_FLG='N')",2453356.1,"To fix the issue:
+
+1. After the Siebel Migration is complete, you must change the Migrated Repository to Siebel Repository in the S_REPOSITORY table.
+2. Test the behavior again",,,,2,Siebel Tools,CNFGDVQ4039,COMPOSER,MIN,1,Discrete Manufacturing,"In IP 17 and higher, the repository is workspace enabled by default so the recommendation is to have only one workspace enabled repository In the database.  
+If there are more than one workspace enabled repositories, the below issue occurs:
+1. Performance in Siebel tools.
+2. The wrong configuration is picked up from the incorrect repository when there are more than one workspace enabled repositories.",Siebel - CRM,Siebel CRM
+SIEBEL_BIP_PDQ_CHECK,"SELECT
+('ROW_ID = ' || A.row_id || '; BIP Search PDQ = ' || A.DESC_TEXT || '; LANG_ID = ' || A.LANG_ID || '; NAME = ' || A.NAME || '; DATE CREATED = ' || A.CREATED) AS KEY_DATA,
+  'Proposed solution: How To Automate Deletion Of The BIP PDQs Created During BIP Reports Execution Failures? (Doc ID 2543021.1)' AS SOLUTION, 
+  'Y' as EVENT_RAISED
+FROM SIEBEL.S_APP_QUERY A
+WHERE A.DESC_TEXT LIKE '%BIPSea%' 
+AND to_date(A.CREATED) < to_date(SYSDATE)-2;
+
+",2543021.1,"1. Create some dummy records under Administration - Application -> Predefined Queries, which would start with name *BIP , which looks like the PDQ records getting created during crash
+
+2. Create a simple workflow for delete operation on BC ""Admin Query List"" - Please find the attached worflow xml ""Test SR BIP.xml"", Import it.
+
+3. Define the RCR
+
+-> Created a Job for "" Workflow Process Batch Manager""
+
+     Provide Job details (Scheduling details as per your requirement)
+
+-> Under 'Job Parameters'
+
+     Create 2 records
+
+      1. For 'Search Specification'
+
+      2. For 'Workflow Process Name'
+
+          Give the value for 'Search Specification' as [Description] like '*BIP*' and [Created] <Today()-2
+
+          Give value for 'Workflow Process Name' as 'Test SR BIP' ( whcih was created above for delete operation in BC 'Admin Query List')
+
+-> Submit Job
+
+4. Verify the records got deleted.
+
+Note: Please do a thorough testing in lower environments before actually implementing in higher environments.",,How To Automate Deletion Of The BIP PDQs Created During BIP Reports Execution Failures? ,PDQ’s are created when the BIP report generation fails and XMLP cannot delete '* BIP SearchSpec' from S_APP_QUERY correctly before finishing the task.,3,Siebel Reports,RPTSQ3906,BIPUBSYSADMQ3906,DAY,1,Accounting to Financial Reports: Legal Reporting,"Many Private BIP Search PDQ created in Production environment and is making them as default PDQ for the user(s), due to this while user navigation in application introducing performance issues.",Siebel - Technology,Core Technology
+SIEBEL_EPROD_VERSIONS,"SELECT 
+'SBL-DAT-00500 When Trying to Export Product (Doc ID 1584538.1)' AS SOLUTION,
+count(p1.NAME) as EVENT_RAISED,
+P1.NAME  KEY_DATA
+FROM 
+SIEBEL.S_PROD_INT P1,
+SIEBEL.S_VOD P2,
+SIEBEL.S_VOD_VER P3 
+WHERE 
+P1.CFG_MODEL_ID = P2.OBJECT_NUM 
+AND P2.ROW_ID = P3.VOD_ID 
+AND P1.PROD_TYPE_CD = 'Customizable' 
+AND P3.ACTIVE_FLG = 'Y' 
+GROUP BY P1.NAME 
+",1584538.1,"Provided workaround will help to fix the issue:
+
+1.) Clear history versions of the product. This will result in deleting all old versions of the product and keeping only the current workspace. You have to release the product afterward again.
+  With the method CleanupSingleObject in the business service ""ISS Authoring Import Export"" you can delete all old versions of a product. 
+  After deleting your old versions you will be able to export your product.
+  NOTE: Please do a backup of your data before clearing the history versions.
+
+
+2.) If you do not want to clear your versions in your production environment, there might also be the possibility to create a local DB from where you do the Clear History and then the export.
+
+
+3.) Please set MaxFetchArraySize to overcome the error:
+
+Please test with a dedicated client, connected against your Server DB. Please use the following settings in your .cfg file:
+  MaxCursorSize = -1
+  MaxFetchArraySize = -1",,,,2,Siebel CRM,COM,ECFG,WEEK,MON,,Poor end user experience due to performance impact.,Siebel - CRM,Siebel CRM
+SIEBEL_S_SRM_REQUEST_QUEUED_WORKFLOW,"SELECT 'QUEUED WORKFLOW REQUEST COUNT IS ' || COUNT(ROW_ID) KEY_DATA,
+'Proposed solution: What are the possible causes for Siebel server requests/server jobs in the S_SRM_REQUEST table to remain in queued status? (Doc ID 1944311.1)' AS SOLUTION,
+'Y' as EVENT_RAISED
+FROM 
+SIEBEL.S_SRM_REQUEST 
+WHERE 
+SCHED_START_DT < SYSDATE-1  
+AND ((ROW_ID<> PAR_REQ_ID AND PAR_REQ_ID<>NULL) OR PAR_REQ_ID IS NULL) 
+AND STATUS='QUEUED'
+GROUP BY STATUS", 1944311.1,"To fix the issue, please refer: What are the possible causes for Siebel server requests/server jobs in the S_SRM_REQUEST table to remain in queued status? (Doc ID 1944311.1)",,,,2,Siebel CRM,WRKFLWQ2968,RPTNGCMPQ2968,DAY,1,P2P: Purchasing,"This error comes up when an RCR is executing a workflow job in either WfProcMgr or WfProcBatchMgr component or any of custom workflow components.
+Issue would lead to delay in completing batch processes impacting business functionality",Siebel - CRM,Siebel CRM
+SIEBEL_WORKMON_CRASH_DICISCOLENCRYPTED,"SELECT 
+  COUNT(row_id) AS Event, 
+  'Workflow Monitor Agent (WorkMon) Component Crashes in DICIsColEncrypted() Due To S_LST_OF_VAL Volume (Doc ID 2737259.1)' AS Solution 
+FROM 
+  SIEBEL.S_LST_OF_VAL 
+GROUP BY 
+  'Workflow Monitor Agent (WorkMon) Component Crashes in DICIsColEncrypted() Due To S_LST_OF_VAL Volume (Doc ID 2737259.1)' 
+HAVING 
+  COUNT(row_id) > 1000000;
+",2737259.1,"To fix the issue, follow below steps:
+
+Run ""RRCleanup.exe"" as per IP2017 : Should be cleaned up S_LST_OF_VAL records during the RRcleanup.exe execution ? (Doc ID 2436483.1) which is available from 18.9 onwards
+
+Ref: IP2017 : Should be cleaned up S_LST_OF_VAL records during the RRcleanup.exe execution ? (Doc ID 2436483.1)",,,,2,Siebel CRM,WRKFLWQ2968,MNTRGNTQ2968,WEEK,SUN,P2P: Purchasing,All realtime processing of workflows will fail if WorkMon crashes.,Siebel - CRM,Siebel CRM
+SIEBEL_WF_MONITOR_LVL,"SELECT 
+  (
+    'ROW_ID = ' || wf.row_id || '; NAME = ' || wf.name || '; DATE CREATED = ' || wf.created || '; MONITOR LEVEL CD= ' || wf.monitor_lvl_cd
+  ) AS Key_data, 
+  'Proposed solution: High Volume of Data Collected in Tables S_WFA_INST_LOG, S_WFA_INSTP_LOG, and S_WFA_STPRP_LOG (Doc ID 478169.1)' Solution, 
+  'Y' as Event_raised 
+FROM 
+  siebel.s_wfa_dploy_def wf, 
+  siebel.s_app_ver vs 
+WHERE 
+  UPPER(wf.monitor_lvl_cd) <> 'NONE' 
+  AND wf.last_upd < (SYSDATE - 1) 
+  AND (
+    TO_NUMBER(
+      SUBSTR(vs.app_ver, 2, 3)
+    )< 20 
+    OR vs.app_ver IN (
+      'v20.1', 'v20.2', 'v20.3', 'v20.4', 
+      'v20.5', 'v20.6'
+    )
+  ) 
+UNION 
+SELECT 
+  (
+    'ROW_ID = ' || wf.row_id || '; NAME = ' || wf.name || '; DATE CREATED = ' || wf.created || '; MONITOR LEVEL CD= ' || wf.monitor_lvl_cd
+  ) AS Key_data, 
+  'Proposed solution: High Volume of Data Collected in Tables S_WFA_INST_LOG, S_WFA_INSTP_LOG, and S_WFA_STPRP_LOG (Doc ID 478169.1)' Solution, 
+  'Y' as Event_raised 
+FROM 
+  siebel.s_rr_workflow wf, 
+  siebel.s_app_ver vs 
+WHERE 
+  UPPER(wf.monitor_lvl_cd) <> 'NONE' 
+  AND wf.last_upd < (SYSDATE - 1) 
+  AND (
+    TO_NUMBER(
+      SUBSTR(vs.app_ver, 2, 3)
+    )>= 21 
+    OR vs.app_ver IN (
+      'v20.7', 'v20.8', 'v20.3', 'v20.9', 
+      'v20.10', 'v20.11', 'v20.12'
+    )
+  )",478169.1,"The monitoring level should be set appropriately. If there is no need to monitor the process, set the value to ""0 - None"" which prevents any data to be written into these tables.
+ 
+If monitoring level is enabled for business reasons, regularly use the Purge button located in Site Map > Administration - Business Process > Workflow Instance Monitor >   Process Instances applet, to keep only the relevant data in these tables.
+ 
+In situations where an incorrect setting of the monitoring level leads to these tables reaching a critical size that could lead to a database failure, the purge functionality may not help to recover quickly. In this case, the following tables can be entirely cleared with a database vendor utility:
+ 
+S_WFA_INST_LOG
+S_WFA_INSTP_LOG
+S_WFA_STPRP_LOG
+S_WFA_DPLOY_DEF
+ 
+
+NOTE: From Siebel 20.7 or later version, Workflow object was migrated into Workspaces and the following ""S_WFA_DPLOY_DEF"" table was replaced by ""S_RR_WORKFLOW"" table. This new table is similar to ""S_WFA_DPLOY_DEF"", which contains a compiled definition of each deployed Workflow Process. For more information, please see the following Siebel New Product feature TOI's ""Siebel CRM 2020 TOI: Workflow in Workspaces Functional Overview"":
+
+How to Subscribe for Latest Siebel CRM TOI? (Doc ID 2499120.1)
+ 
+NOTE: However, the following important notes should be considered:
+ 
+The table S_WFA_DEFN_LOG must be kept intact.
+ 
+No selective statement can be provided, all data will be removed. This implies that all the monitoring data gathered will be lost and assumes that there is no need for these log records to be reviewed or used at any time.
+ 
+This practice should not be common and in such situations, the above steps a and b should be carefully considered.",,,,2,Siebel CRM,WRKFLWQ2968,PRCSSMNGQ2968,DAY,1,P2P: Purchasing,Performance impact while executing workflows.,Siebel - CRM,Siebel CRM
+SIEBEL_TBUI_LOG,"SELECT SUM(CNT) as KEY_DATA,
+'Internal Logic In Business Service Task Log Cleanup Service Method: Cleantasklon Execution (Doc ID 2435114.1)' AS SOLUTION 
+FROM
+(SELECT COUNT(*) CNT
+FROM SIEBEL.S_TU_INST
+WHERE COMPLETED_FLG = 'Y' 
+AND CREATED < (SYSDATE - 2) 
+AND TASK_ID_VAL NOT IN (SELECT ROW_ID FROM SIEBEL.S_TU_INST WHERE COMPLETED_FLG = 'N')
+UNION ALL
+SELECT COUNT(*) CNT FROM SIEBEL.S_TU_LOG WHERE 
+CREATED < (SYSDATE - 2) AND
+TASK_ID_VAL NOT IN (SELECT ROW_ID FROM SIEBEL.S_TU_INST WHERE COMPLETED_FLG = 'N'))",2435114.1,"Internal logic for Business Service 'Task Log Cleanup Service' invoke method: 'CleanTaskLog'
+
+1. First it will query for all the incomplete task instance records and get task_id_val
+
+2. It will execute one more query on S_TU_INST table with completed flag = Y and task _id_val not in above fetched task_id_val's
+
+It will insert the above query results in temp table
+
+3. After that it will delete records from all task log tables with task_id_val and txn_id available in temp table",,,,2,Siebel CRM,TSKUIQ2968,TSKXCTNQ2968,DAY,1,,"TBUI Performance issue due to huge data present in S_TU_LOG /S_TU_INST table
+
+S_TU_LOG and S_TU_INST tables not cleared due to Task cleanup job/comp not working
+X`",Siebel - CRM,Siebel CRM
+SIEBEL_AM_COMPONENT,"SELECT 
+  A.NAME || ' POSITION COUNT IS ' || COUNT(NAME) KEY_DATA, 
+  'DefaultT Position = Siebel Administrator Causes AsgnSrvr To Go Offline, Errors SBL-ASG-00027 and SBL-ASG-00024 (Doc ID 2375916.1))' AS SOLUTION, 
+  COUNT(NAME) AS EVENT_RAISED 
+FROM 
+  SIEBEL.S_POSTN A 
+WHERE 
+  A.NAME IN (
+    SELECT 
+      POSTN_DFLT_NAME 
+    FROM 
+      SIEBEL.S_ASGN_OBJECT
+  ) 
+GROUP BY 
+  A.NAME",2375916.1,"This issue reported as bug and bug details provided:
+
+Bug 27446932 : DEFAULT POSITION = SIEBEL ADMINISTRATOR CAUSES ASGNSRVR TO GO OFFLINE
+
+Till the bug is fixed, the work around is:
+
+Rename position(s) having the same name leaving only one position having Name = Siebel Administration, and restart AsgnSrvr component.
+
+In this case, rename one of Siebel Administrator to a different name, and I rename the one having Position ROW_ID = '04-HKCSE' to Siebel Administrator2. To do that, log into application, go to Administration - Group > Positions, query for Position by entering ""Siebel Administrator"" (name enclosed in double quotes) in Position field, 2 records are returned:
+
+Division                     Position                   ROW_ID
+Siebel Administration  Siebel Administrator  0-5200
+Default Organization  Siebel Administrator   04-HKCSE
+
+Choose the record having  ROW_ID = 04-HKCSE  (use Help > About Record, or Menu > About Record)
+Update Position = Siebel Administrator2 for ROW_ID = '04-HKCSE'.
+After that query for Position by entering ""Siebel Administrator"" (name enclosed in double quotes) in Position field, and only one record is returned.
+Restart AsgnSrvr component.
+AsgnSrvr is successfully started up.
+
+The reason for renaming ROW_ID = '04-HKCSE' and not ROW_ID = '0-5200' is because the vanilla Siebel Administrator position is the one with ROW_ID = '0-5200' which should be left as is and should not be renamed.",,,,2,Siebel CRM,ASGMNGRQ2968,AMBTCHMDQ2968,HOUR,1,,"Assigment Manager Component is offline
+'Default Position' for Assignment object should be unique, if not the Assignment Manager will find multiple records and component will not come online.",Siebel - CRM,Siebel CRM
+SIEBEL_EMAIL_SSL_TIMEOUT,"SELECT DISTINCT 
+('ROW_ID = ' || x.row_id || '; CONTROL NAME = ' || x.control_name || '; PARAM NAME = ' || x.param_name || '; VALUE = ' || x.value || '; VALUE2 = ' || y.value) AS KEY_DATA,
+'Proposed solution: SSL For POP3 (MS Exchange 2010) is Failing On Siebel 8.1.1.10 , getting ERROR:Timeout reading data from socket. (Doc ID 1932712.1)' AS SOLUTION, 
+'Y' as EVENT_RAISED
+FROM (
+      SELECT 
+      B.ROW_ID,
+      A.NAME CONTROL_NAME,
+      D.NAME PARAM_NAME,
+      C.VALUE
+      FROM  
+      SIEBEL.S_CM_CNCTR A JOIN SIEBEL.S_CM_PROF B ON A.ROW_ID=B.CM_CNCTR_ID
+                   JOIN SIEBEL.S_CM_PROF_PARM C ON B.ROW_ID=C.CM_PROF_ID
+                   JOIN SIEBEL.S_CM_CNCTR_PARM D ON C.CM_CNCTR_PARM_ID=D.ROW_ID
+      WHERE A.NAME IN 
+	  ('Internet SMTP/IMAP Server',
+	   'Internet SMTP/POP3 Server')
+      AND D.NAME IN 
+      ('IMAP Timeout',
+       'POP3 Timeout')
+       AND C.VALUE>'0' )x
+JOIN 
+      (
+	  SELECT 
+      B.ROW_ID,
+      A.NAME CONTROL_NAME,
+      D.NAME PARAM_NAME,
+      C.VALUE
+      FROM  
+      SIEBEL.S_CM_CNCTR A JOIN SIEBEL.S_CM_PROF B ON A.ROW_ID=B.CM_CNCTR_ID
+                   JOIN SIEBEL.S_CM_PROF_PARM C ON B.ROW_ID=C.CM_PROF_ID
+                   JOIN SIEBEL.S_CM_CNCTR_PARM D ON C.CM_CNCTR_PARM_ID=D.ROW_ID
+      WHERE A.NAME IN  
+	  ('Internet SMTP/IMAP Server',
+	   'Internet SMTP/POP3 Server')
+      AND D.NAME IN 
+      ('Enable SSL for POP3',
+       'Enable SSL for IMAP',
+       'Enable SSL for SMTP',
+       'Enable TLS for IMAP',
+       'Enable TLS for POP3',
+       'Enable TLS for SMTP')
+       AND UPPER(C.VALUE)='TRUE')Y 
+       ON X.ROW_ID=Y.ROW_ID ",1932712.1,"The issue was resolved by doing the following steps:
+
+ 
+
+a. old emails in Incoming folder were deleted (archived)
+
+../siebsrvr/bin/incoming
+../siebsrvr/bin/failed (this one was empty)
+../siebsrvr/bin/queued
+
+b. email driver parameter 'POP3 Timeout' = 0 (it was set to default 60). Normally we recommend to set this parameter to 0 when using SSL , meaning there is no timeout on the Siebel side and letting email server use its own timeout.
+
+c. CommInbound Receiver component was restarted.",,,,2,Siebel CRM,CMSRVMLQ2968,EMLCNFGRQ2968,WEEK,MON,Accounting to Financial Reports: Reporting,Inbound Emails will not get processed into Siebel and mailbox will not get cleared.,Siebel - CRM,Interaction
+SIEBEL_S_EAI_QUEUE,"SELECT
+('ROW_ID = ' || QI.ROW_ID || '; NAME = ' || Q.NAME || '; QUEUED_TS = ' || TO_CHAR(FROM_TZ(CAST(QI.QUEUED_TS AS TIMESTAMP), 'GMT') AT TIME ZONE 'US/Eastern', 'MM-DD-YYYY HH:MI:SS AM') 
+|| '; SEQ_NUM = ' || QI.SEQ_NUM || '; STATUS_CD = ' || QI.STATUS_CD || '; QUEUE_REF_VAL = ' || QI.QUEUE_REF_VAL || '; QUEUE_REF_VAL2 = ' || QI.QUEUE_REF_VAL2
+|| '; QUEUE_REF_VAL3 = ' || QI.QUEUE_REF_VAL3 || '; COMMENTS = ' || QI.COMMENTS ) AS KEY_DATA,
+'Proposed solution: Smart Sensor for MAU Project NYJC SIEBEL_S_EAI_QUEUE (Doc ID 2699684.1) ' AS SOLUTION, 
+'Y' as EVENT_RAISED
+FROM 
+SIEBEL.S_EAI_QUEUE_ITM QI 
+INNER JOIN SIEBEL.S_EAI_QUEUE Q ON QI.QUEUE_ID = Q.ROW_ID 
+WHERE 
+Q.NAME = 'NYJC Business Exception Queue' 
+AND QI.QUEUE_REF_VAL LIKE '%DELE%' 
+AND QI.CREATED >= ((CAST(SYSDATE AS TIMESTAMP) AT TIME ZONE 'UTC')-.58/24)",2699684.1,"The resolutions actions that can be performed are:
+
+1. Login to Siebel and navigate to Site Map > Administration - Integration > EAI Queue;
+
+2. In the first applet, query the list where the queue name = 'NYJC Business Exception Queue'.
+
+3. Next query for the sequence number provided in the Service Request.
+
+4. Review the comments, attachment and reference column values to determine the cause of the exception.
+
+5. Take the appropriate action to resolve.",,,,2,Siebel CRM,EAIQ2968,WBSRVCSQ2968,WEEK,MON,,NYJC Business can be impacted if the EAI Queue contains exceptions records that were not processed.,Siebel - CRM,Interaction
+SIEBEL_CONFIG_CALC_FIELD,"SELECT 
+  'Y' AS Event, 
+  'Getting Generic SSA NOTOK Error When Scripting Is Enabled After Migrating From IP16 To IP 17 (Doc ID 2709975.1)' AS Solution,
+  'Business Component= ' || bc.name || ' Field Name= ' || f.name || ' Type= ' || f.type || ' Calculated Value= ' || f.calcval AS Key_data
+FROM 
+  siebel.s_field f, 
+ siebel. s_buscomp bc 
+WHERE 
+  f.buscomp_id = bc.row_id 
+  AND f.calcval LIKE 'Count%' 
+  AND UPPER(f.type) = 'DTYPE_TEXT';
+",2709975.1,"1. Login to Siebel Tools
+2. Create new development workspace and open the workspace
+3. Query for Business Component in which we are facing this issue
+4. Query for the field : CDOS Clm Std Count ==> Calculated expression : Count (""HTIM MDF Claims Std"")
+5. Change the Type from DTYPE_TEXT to DTYPE_NUMBER
+6. Login to application
+7. Inspect the dev workspace and test the scenario
+8. Deliver the changes to MAIN workspace if the test results passed",,Getting Generic SSA NOTOK error when Scripting is enabled,Getting Generic SSA NOTOK error on changing the Service Request Field Value,2,Siebel CRM,VBSCRPTQ2968,CNSCRPTQ2968,WEEK,FRI,,Blocker in specific functionality wherever we are using the calculated field in scripting with data types mismatch,Siebel - Config and Integrations,Configuration Tools
+SIEBEL_UPT_RUNTIME_EVENTS,"SELECT ('ROW_ID = ' || A.ROW_ID || '; SYSTEM_PREFERENCE = ' || A.SYS_PREF_CD || '; VALUE = ' || A.VAL || '; DATE CREATED = ' || A.CREATED) AS KEY_DATA, 
+'Proposed solution: Configuring Usage Pattern Tracking (UPT) (Doc ID 2259206.1)' AS SOLUTION, 
+'Y' as EVENT_RAISED from SIEBEL.S_SYS_PREF A 
+WHERE SYS_PREF_CD = 'Enable UPT' and VAL='TRUE'", 2259206.1,"To fix the issue, please refer: Configuring Usage Pattern Tracking (UPT) (Doc ID 2259206.1)",,,,2,Siebel CRM,CLNTFUNCQ2968,ACCNTSQ2968,MONTH,1,,"UPT functionality required for tracking usage pattern information. 
+This was concluded to be only for Dev and testing environment and not valid for production.",Siebel - CRM,Siebel CRM
+SIEBEL_S_ESCL_REQ_MONITOR,"SELECT
+('REQ_ID = ' || REQ_ID || '; CREATED = ' || CREATED || '; CREATED_BY = ' || CREATED_BY || '; BT_ROW_ID = ' || BT_ROW_ID || '; GROUP_ID = ' || GROUP_ID
+|| '; RULE_ID = ' || RULE_ID || '; TBL_NAME = ' || TBL_NAME) AS KEY_DATA,
+'Proposed solution: Why Workflow policies not getting triggered? (Doc ID 503856.1)' AS SOLUTION, 
+'Y' as EVENT_RAISED
+FROM
+SIEBEL.S_ESCL_REQ
+WHERE RULE_ID IN 
+(SELECT ROW_ID FROM SIEBEL.S_ESCL_RULE WHERE EXPIRE_DT IS NOT NULL AND EXPIRE_DT <= SYSDATE)",503856.1,"Please use the following steps to troubleshoot when encountering similar behavior:
+
+1. Ensure your Workflow Policies have a valid activation date and no expiration date set.
+
+2. Determine if the affected Workflow Policies have an Action to run a WF Process.
+
+3. Ensure WorkMon component is running against the right WF Policy Group.
+
+4. Ensure trigger.sql file has the correct trigger information for your WF Policy Rules and Group.
+
+5. Verify that the 'Generate Triggers' Server Task has been run to drop and recreate the Database triggers
+
+6. Run the Generate Triggers server task with the below parameters:
+
+To Drop Triggers:
+
+EXEC = True
+Remove = True
+
+To Generate Triggers:
+
+EXEC = True
+Remove = False
+
+7. Ensure records are inserted into the S_ESCL_REQ table for the affected Policy Rules.
+
+8. Confirm that the Workflow Process Manager is up and running. Make sure that all related tasks are running and not hanging.",,,,2,Siebel CRM,WRKFLWQ2968,MNTRGNTQ2968,DAY,1,P2P: Purchasing,This issues comes up when WorkMon component stops monitoring the table due to any errors reported in processing workflow. Increased number of records in S_ESCL_REQ will cause application level performance issues.,Siebel - CRM,Siebel CRM
+SIEBEL_COND_EXPR_ACTION_RUNTIME_EVENT_CRASH,"SELECT 
+  COUNT(row_id) AS Event, 
+  'Conditional Expression In Runtime Event Action With Length More Than 1000 Is Crashing (Doc ID 2573980.1)' AS Solution 
+FROM 
+  SIEBEL.s_ct_action 
+WHERE 
+  LENGTH(cond_expr) > 1000 
+HAVING 
+  COUNT(row_id) >= 1;",2573980.1,"A possible workaround to avoid the crash is increase the property TextLengh to 2000 for Expression Designer VBC. Here are the steps:
+
+1- On Siebel Tools open a new Developer workspace under MAIN or Integration workspace in menu Workspace/Create or on Web Tools open the Workspace Dashboard click right top corner cubicle icon and click Create.
+
+2 - Siebel Tools or Web Tools and select on Object Explorer Business Component object.: Expression Designer VBC
+
+2 - Search for Business Component with Name = ""Expression Designer VBC""
+
+3 - Expand Business Component on Object Explorer and select Field
+
+4 - Search for Field with Name = ""Expression""
+
+5 - Set the Property TextLength to 2000 for field Expression of BC Expression Designer VBC (this would match the BC Personalization Action field Condition Expression which is the maximum size that can be store on this original store).
+
+6 - Save the changes stepping out and Checkpoint/Submit for Deliver/ Deliver the changes to MAIN workspace or Integraton Workspace as appropriate.",,Application Object Manager crash when Reviewing Runtime Events,Customer may hit AOM crash when trying to review a existing Runtime Action Conditional Expression with more than 1000 characters.,2,Siebel CRM,CLNTFUNCQ2968,ACCNTSQ2968,WEEK,WED,,"This can cause a Siebel Application crash, so may affect several Siebel users sporadically",Siebel - CRM,Siebel CRM
+SIEBEL_S_TASK_INBOX,"SELECT
+('ROW_ID = ' || item.row_id || '; NAME = ' || item.name || '; STATUS_CD = ' || wfinstance.status_cd|| '; INTERNAL STAT VAL = ' || wfinstance.internal_stat_val || '; DATE CREATED = ' || item.CREATED) AS KEY_DATA,
+'Proposed solution: Cannot Resume Paused Task (SBL-BPR-00536) (SBL-BPR-00520) (Doc ID 1424538.1)' AS SOLUTION, 
+'Y' as EVENT_RAISED
+FROM 
+SIEBEL.S_UNVBX_ITEM ITEM,
+SIEBEL.S_UNVBX_ITMTASK ITEMTASK,
+SIEBEL.S_WFA_INSTANCE WFINSTANCE
+WHERE 
+ITEMTASK.UNVBX_ITEM_ID=ITEM.ROW_ID
+AND WFINSTANCE.EXEC_INST_VAL=ITEM.OBJECT_VAL
+AND WFINSTANCE.STATUS_CD='ACTIVE'
+AND WFINSTANCE.INTERNAL_STAT_VAL<>3",1424538.1,"This is expected behavior, however the following workaround can be implemented to correct the paused task records data:
+
+1. Write a custom business service with search for the paused task records with active in Task Instance business component.
+
+2. Update the value of the status in Task Instance business component to Paused for the records retrieved.",,,,3,Siebel CRM,TSKUIQ2968,INBXQ2968,DAY,1,,Issue leads to users not able to resume tasks causing delays in capturing business data.,Siebel - CRM,Siebel CRM
+COPY_SIEBEL_SQL_TEST1,"SELECT DISTINCT COUNT(*) AS EVENT
+FROM SIEBEL.S_CONTACT",,This is Test ME for Siebel with ODM,,,,2,Siebel CRM,SYSADMQ2968,SYSTMADMNQ2968,MIN,1,Discrete Manufacturing,Dummy metric extension for service implementation testing,Siebel - Config and Integrations,Configuration Tools
+SIEBEL_S_XMLP_REPOUTPT_ERROR,"SELECT 
+SUM(event_raised) as EVENT_RAISED,
+LISTAGG(NAME, '; ')
+WITHIN GROUP (ORDER BY NAME) ""KEY_DATA"",
+'SRDC - What data does Oracle Support need to troubleshoot Reports - BIP issues ? (Doc ID 1674833.1)' AS SOLUTION
+FROM  
+(
+select CASE WHEN z.status_cd='Error' THEN '1' ELSE '0' END AS EVENT_RAISED,z.* from (
+SELECT ROWNUM,Y.* FROM
+(
+SELECT X.ROW_ID,
+X.STATUS_CD,
+X.NAME,
+X.CREATED,
+X.ERROR_MSG
+FROM SIEBEL.S_XMLP_REPOUTPT X
+ORDER BY X.CREATED DESC)Y
+WHERE ROWNUM <= 4
+ORDER BY  ROWNUM ASC) z)zz
+WHERE event_raised='1' 
+",1674833.1,"Siebel BIP Report generation is failing.
+
+This has to analyzed and fixed, as documented in ""SRDC - What data does Oracle Support need to troubleshoot Reports - BIP issues ? (Doc ID 1674833.1)""
+Please let us know if you want to issue.",,,,2,Siebel CRM,RPTSQ2968,BIPUBINSTLQ2968,HOUR,1,Accounting to Financial Reports: Legal Reporting,When reports are not executed there can be significant business impact.,Siebel - CRM,Siebel CRM
+SIEBEL_S_XMLP_REPOUTPT_PERFORMANCE,"SELECT LISTAGG(NAME, '; ')
+WITHIN GROUP (ORDER BY NAME) ""KEY_DATA"",
+'Proposed solution: Improving the performance of Siebel BI Publisher Report Generation ( Doc Id 1392449.1)' AS SOLUTION,
+SUM(test_performance) as EVENT_RAISED
+FROM
+(
+SELECT CASE WHEN RUN_TIME_SECONDS>60 THEN '1' ELSE '0' END AS test_performance,
+Y.*
+FROM
+(
+SELECT
+X.NAME,
+X.RUN_TIME_SECONDS FROM
+(SELECT
+ROUND(((LAST_UPD-CREATED)*24*60*60),1) RUN_TIME_SECONDS,
+A.NAME
+FROM
+SIEBEL.S_XMLP_REPOUTPT A
+WHERE A.STATUS_CD='Success'
+ORDER BY A.CREATED DESC
+)X
+WHERE ROWNUM <= 3
+ORDER BY ROWNUM DESC
+)Y
+)Z
+WHERE test_performance=1",1392449.1,"Siebel BIP Report performance is detected. 
+This are several causes for the performance issue which needs to be analyzed & fixed, as documented in ""Proposed solution: Improving the performance of Siebel BI Publisher Report Generation ( Doc Id 1392449.1)""
+Please let us know if you want to fix the performance issue with Siebel Reports.",,,,2,Siebel CRM,RPTSQ2968,RSPRFMQ2968,DAY,1,Accounting to Financial Reports: Legal Reporting,"Slow performance on running Siebel reports affects the business users and might even 
+affect the overall performance of Siebel Enterprise.",Siebel - CRM,Siebel CRM
+SIEBEL_SYSTEM_REQUIRED_WORKFLOWS,"SELECT
+COUNT(row_id) AS Event,
+'How to Verify If All The System Required Workflows Are Active In Design Time Repository Or Runtime Repository Environment (Doc ID 2828132.1)' AS Solution
+FROM
+SIEBEL.S_RR_WORKFLOW T1
+WHERE
+(T1.COMPILED_OBJ_DEFN IS NOT NULL AND T1.WS_ID IN (SELECT ROW_ID FROM S_WORKSPACE WHERE NAME='MAIN' AND ROWNUM<=1 )
+AND
+T1.VERSION_NUM <= (SELECT VERSION_NUM  FROM S_WS_VERSION WHERE WS_ID IN (SELECT ROW_ID FROM S_WORKSPACE WHERE NAME='MAIN' AND ROWNUM<=1) AND REPOSITORY_ID=(SELECT ROW_ID FROM S_REPOSITORY WHERE NAME='Siebel Repository') AND ROWNUM=1)
+AND
+T1.NAME IN ('UDA Acknowledgement',
+'UDA Batch Deployment',
+'UDA Batch Import',
+'UDA Data Query',
+'UDA Deploy',
+'UDA Deployment',
+'UDA Environment Verification',
+'UDA HTTP Transport',
+'UDA Import File',
+'UDA Prepare',
+'UDA Target Workflow',
+'File Transfer Workflow'))",2828132.1,"How to Verify if System Required workflows are Active in any Design time Repository or Runtime Repository environment?
+
+Solution:
+
+1. Execute below query to identify active workspace Id and Repository Id of the application
+
+SELECT ROW_ID ""Workspace Id"",REPOSITORY_ID FROM SIEBEL.S_WORKSPACE WHERE NAME='MAIN' AND ROWNUM<=1 ORDER BY CREATED DESC
+
+Note workspace Id and repository Id which can be used in below SQL
+
+ 2. Use below sql to identify the latest version of the active workspace by replacing <Workspace Id> and <Repository Id> values 
+
+SELECT VERSION_NUM ""Workspace Version Number"",WS_ID ""Workspace Id"" FROM SIEBEL.S_WS_VERSION WHERE WS_ID=<Workspace Id> AND REPOSITORY_ID=<Repository Id> AND ROWNUM=1 ORDER BY VERSION_NUM DESC
+
+Note down the version number and workspace id from above sql
+  
+
+3. Following SQL can be used to validate if any of the system workflows are in-active in S_RR_WORKFLOW run time table:
+
+SELECT
+
+T1.NAME,
+T1.COMPILED_OBJ_DEFN
+
+FROM
+SIEBEL.S_RR_WORKFLOW T1
+
+WHERE
+
+(T1.COMPILED_OBJ_DEFN IS NULL AND T1.WS_ID = <Workspace Id> AND T1.VERSION_NUM <= <Workspace Verison Number> AND T1.NAME IN ('UDA Acknowledgement',
+
+'UDA Batch Deployment',
+
+'UDA Batch Import',
+
+'UDA Data Query',
+
+'UDA Deploy',
+
+'UDA Deployment',
+
+'UDA Environment Verification',
+
+'UDA HTTP Transport',
+
+'UDA Import File',
+
+'UDA Prepare',
+
+'UDA Target Workflow',
+
+'File Transfer Workflow'))
+
+ORDER BY
+
+T1.NAME, T1.VERSION_NUM DESC
+
+ If above query is fetching any result, Perform following steps to activate the identified workflows:
+
+1. Copy the workflow name from above sql and login to Siebel Tools in Development environment
+
+2. Create a developer workspace and query for the workflow name identified in step.1
+
+3. Activate the workflow by un-checking ""Inactive"" flag
+
+4. Deliver the developer workspace to Integration Workspace or MAIN depending on which workspace is being migrated to higher versions.
+
+5. Perform Full or Incremental migration and ensure that the above sql is showing 0 results.",,,,2,Siebel CRM,WRKFLWQ2968,OTHRQ2968,WEEK,SUN,P2P: Purchasing,Verify if System Required workflows are Active in any Design time Repository or Runtime Repository environment,Siebel - CRM,Siebel CRM
+SIEBEL_S_USER_FLAG,"SELECT 
+  COUNT(row_id) AS Event, 
+  'Siebel Application Hangs with ""Handling Logon"" and Error ""Unable to create the business service (SBL-DAT-00227)"" (Doc ID 2558359.1)' AS Solution 
+FROM 
+  SIEBEL.s_user 
+WHERE 
+  UPPER(user_flg) = 'N'
+",2558359.1,"1. Login to Database
+2. Update S_USER.USER_FLG to Y
+3. Access Siebel application and see user preference files are getting created",,Cannot login to application SBL-DAT-00227 error,"Required	
+When trying to login to application getting message on browser ""The Web engine has not been initialized properly. Because:. Unable to create the",2,Siebel CRM,SYSADMQ2968,HNGQ2968,DAY,1,,It will impact siebel application to load for users,Siebel - CRM,Siebel CRM
+SIEBEL_S_UI_ORPHAN_RECORDS,"SELECT 'ORPHAN RECORDS COUNT FOR SIEBEL.S_UI_EXPR/SIEBEL.S_UI_OBJECT AND SIEBEL.S_UI_OBJ_EXP_FL/SIEBEL.S_UI_FILE RELATIONSHIP IS ' || SUMM KEY_DATA,
+'Proposed solution: IP18 Repository Export Failing (Doc ID 2484063.1)' AS SOLUTION,
+SUMM as EVENT_RAISED
+FROM
+(
+SELECT SUM(CNT) SUMM FROM (
+--This NOT EXISTSs will return THE COUNT FOR all records from the S_UI_OBJ_EXPR table where there are no records in the SIEBEL.S_UI_OBJECT/SIEBEL.S_UI_EXPR/SIEBEL.S_UI_FILE table for the given UI_OBJECT_ID/UI_EXPR_ID/UI_FILE_ID
+SELECT count(*)CNT FROM SIEBEL.S_UI_OBJ_EXPR WHERE NOT EXISTS
+(SELECT 1 FROM SIEBEL.S_UI_OBJECT WHERE SIEBEL.S_UI_OBJECT.row_id = SIEBEL.S_UI_OBJ_EXPR.UI_OBJECT_ID)
+AND SIEBEL.S_UI_OBJ_EXPR.repository_id = (SELECT ROW_ID FROM SIEBEL.S_REPOSITORY WHERE NAME='Siebel Repository') 
+UNION ALL
+--This NOT EXISTSs will return THE COUNT FOR all records from the SIEBEL.S_UI_OBJ_EXP_FLR table where there are no records in the SIEBEL.S_UI_FILE/SIEBEL.S_UI_OBJ_EXPR table for the given UI_FILE_ID/UI_OBJ_EXPR_ID
+SELECT count(*)CNT FROM SIEBEL.S_UI_OBJ_EXP_FL WHERE NOT EXISTS
+(SELECT 1 FROM SIEBEL.S_UI_FILE WHERE SIEBEL.S_UI_FILE.row_id = SIEBEL.S_UI_OBJ_EXP_FL.UI_FILE_ID)
+AND SIEBEL.S_UI_OBJ_EXP_FL.repository_id = (SELECT ROW_ID FROM SIEBEL.S_REPOSITORY WHERE NAME='Siebel Repository')
+))",2484063.1,"Cleanup both S_UI_OBJ_EXPR and S_UI_OBJ_EXP_FL tables that contained orphan records. After deleting these records the Repository Export should complete without issues.
+
+Note: The above is an example, but any tables that contained orphan records would need to be cleaned up as well.",,,,2,Siebel CRM,SYSADMQ2968,DTMGRTNQ2968,DAY,1,,Import/Export and upgrade process fails  due to orphans records causing delays.,Siebel - Technology,Core Technology
+SIEBEL_ENABLE_SCRIPT_ENGINE,"SELECT
+('ROW_ID = ' || row_id || '; SYS_PREF_CD = ' || SYS_PREF_CD || '; VALUE = ' || VAL || '; COMMENTS = ' || COMMENTS || '; DATE CREATED = ' || CREATED) AS KEY_DATA,
+'Proposed solution: -	ST Scripting Engine - Available in Siebel 7.7.2.3 and After, and 7.8.2 and After, and the Default Engine in 8.0 and After. (Doc ID 478181.1)' AS SOLUTION, 
+'Y' as EVENT_RAISED
+FROM 
+SIEBEL.S_SYS_PREF 
+WHERE 
+SYS_PREF_CD = 'Enable ST Script Engine' 
+and VAL='FALSE'",478181.1,"To fix the issue, please refer following scripting recommendations: ST Scripting Engine: Availability and Usage (Doc ID 478181.1)",,,,2,Siebel CRM,VBSCRPTQ2968,OTHER,MONTH,1,,"There is no known issue reported so far in production environment, however, as T Engine is not supported anymore, it should warn customer still using T Engine to move to ST Engine",Siebel - Config and Integrations,Configuration Tools
+SIEBEL_TEST_PLAN_FOR_TEST_SET,"SELECT 
+  'Y' AS Event, 
+  'Doc ID 2514127.1' AS Solution, 
+  'Row_id= ' || row_id || ' name=' || name || ' has no QA_TEST_PLAN_ID associated' AS Key_Data 
+FROM 
+  siebel.t_test_set 
+WHERE 
+  QA_TEST_PLAN_ID IS NULL;
+",2514127.1,"1) Go to Site Map > Projects and create a Project record. This will be reference in Test Plan in Release field. For example you can create a Project with Name = ""20.8 Update"" or Name = ""June Release""
+
+2) Go to Site Map > Release > Test Plan Administration and create a Test Plan setting the required fields, notice Release pick list point to Project.
+
+3) Create a Test Set in Site Map > Release > Test Set and make sure to set Test Plan column with record created on item 2) above. It is required to be able to Create Test Passes. Drill down on it.
+
+4) Add a Test Script that was previously recorded, generated and imported using the Record Panel (Camcoderd icon when login with ?SWECmd=AutoOn at the end of the URL)
+
+5) Create a Master Suite Site Map > Release > Master Suite and drill down on it
+
+6) Add the Test Set created on item 1)
+
+7) Create a Automation Execution Configuration at Site Map > Release > Automation Execution Configuration
+
+8) Schedule the Automation Execution Configuration record created on item 5) using Schedule Run. Attachment will be created on grand child attachment applet, double check Test Plan is present in <Master Suite name>.csv file that columns ""QA Test Plan Id"" & ""QA Test Plan Name"" are populated.
+
+9) Login to 3rd party Jenkins application integrated with Siebel and execute the Jenkins Siebel Test Execution (STE) Job run to process the Automation Execution Configuration
+
+10) After Jenkins slave node successful executed the STE Job run, refresh the record at Site Map > Release > Automation Execution Configuration created pm item 5)
+
+11) On grand child applet Attachments select the record <Test Run #>_<Run #>_<Master Suite Name>_MasterSuite_<Run#>.xml
+
+12) On grand child applet Attachments click on button ""Create Test Passes""
+
+13) Confirm that the Test Passes has been created in Site Map > Test Pass.",,,,3,Siebel CRM,SYSADMQ2968,TSTTMTNQ2968,WEEK,SUN,,User not able to Create Test Passes,Siebel - CRM,Siebel CRM
+SIEBEL_EMR_HIGHNUMBER_PROFILES,"SELECT  'For SERVER= ' || T2.SERVER_NAME || ' the Response Groups and associated email Profiles COUNT= ' || COUNT(T2.ROW_ID) KEY_DATA,
+'Recommended Number of Email Profiles per Siebel Server Machine when using eMail Response(Doc ID 475446.1)' AS SOLUTION,
+COUNT(T2.ROW_ID) as EVENT_RAISED
+FROM
+SIEBEL.S_CM_INGRP_SRC T1, 
+SIEBEL.S_CM_INGRP T2 
+WHERE 
+T1.CM_INGRP_ID = T2.ROW_ID 
+AND T2.STATUS_CD='Active'
+GROUP BY T2.SERVER_NAME",475446.1,"If you are encountering random crashes with eMail Response (like that above) and you have a high number of email profiles on that machine then you should reduce the number of profiles. The number of Response Groups is irrelevant and the issue is based on the number of email profiles.
+ 
+It is recommended that for a Windows machine with 4GB of RAM and 4 CPU’s that you should have approx 40 email profiles. If you require more than 40 email profiles, then you should look to include these on a different Siebel Server running eMail Response.
+ 
+The above recommendation is based on tests performed in-house. It may be possible to be able to increase the number of profiles running on an Operating System (in other words, UNIX) where the memory usage is different. 
+Note that using Siebel 8.x , IP 13 (14,15) - IP 16 releases (where the architecture of Email Response has not changed)  and having more powerful machines Technical Support would still recommend to use the above guidelines (based on our experience with the customers) - using around 40 email Profiles maximum to avoid any performance related issues.",,,,2,Siebel CRM,CTIQ2968,CTFNCTNLQ2968,DAY,1,Accounting to Financial Reports: Reporting,"Instability on Siebel Email Response on processing inbound emails, CommInboundRcvr crashes.
+The behavior occurs when on Siebel Server the administrator enable multiple Response Groups to monitor a large number of mail box associating multiple email profiles (mail box) to active Response Groups.",Siebel - CRM,Siebel CRM
+SIEBEL_NEW64BITEMAILDRIVER,"SELECT 
+  COUNT(b.row_id) AS Event,
+  'ALERT: How To Upgrade To JRE 64-bit support for Siebel IMAP and POP3 Driver for Email Response; Replaces 32-bit Driver From Siebel 21.3 and later (Doc ID 2761440.1)' AS Solution
+FROM 
+  siebel.S_CM_CNCTR_PARM A, 
+  siebel.S_CM_CNCTR B 
+WHERE 
+  B.ROW_ID = A.CM_CNCTR_ID 
+  and B.LIB_NAME = 'sscmmail' 
+  AND A.NAME = 'Mail Servlet URL'
+",2761440.1,"Here are detailed steps on how to setup the new 64-bit JRE for Siebel IMAP/POP3 driver in Siebel Email Response that replaces old 32-bit introduced in Siebel CRM 21.3:
+
+1. Obtain the public certificate for the IMAP or POP3 Server and save it as .cer file, for more details verify Document How to obtain public certificate for POP3 or IMAP Server (Doc ID 2761455.1)
+
+2. When you are using secure protocol for IMAP and POP3 using JavaMail customer should obtain the public certificate AND public Root CA certificate that signed the Email Server's certificate.
+
+a. This applies only if the Profiles parameter Enable SSL for IMAP or Enable TLS for IMAP = TRUE or Enable SSL for POP3 or Enable TLS for POP3 = TRUE. If no secure protocols are been used this step can be skipped
+
+b. The public certificate for the IMAP or POP3 Server must be imported into the Siebel Server Container running the Communication Inbound Receiver component.
+
+c. The location of the Siebel Server Container Truststore can be verified in SIEBEL_ROOT\applicationcontainer_internal\conf\server.xml and search for parameter ""truststoreFile"" and ""truststorePass""
+
+d. Execute the keytool command to import the public certificate AND parent public Root CA certificate for the POP3 or IMAP Server for example from Windows command prompt on Siebel Server:
+set JAVA_HOME=C:\Siebel\ses\jre
+set PATH=%JAVA_HOME%\bin;%PATH%
+keytool -import -alias outlook365 -file outlook365.cer -keystore c:\Siebel\ses\applicationcontainer_internal\siebelcerts\siebeltruststore.jks
+keytool -import -alias outlook365ca -file outlook365digicert.cer -keystore c:\Siebel\ses\applicationcontainer_internal\siebelcerts\siebeltruststore.jks
+It will prompt for the truststore password, enter the password identified on step 3. above.
+
+e. After importing the certificate the Siebel Server Application Container must be restarted for the container load the new truststore in memory
+
+3. Create the new parameter ""Mail Servlet URL"" for Internet SMTP/IMAP Server and Internet SMTP/POP3 Server drivers:
+
+a. Navigate to Site Map > Administration - Communications Communications Driver and Profiles
+
+b. On Communications Drivers list applet query for ""Internet SMTP*""
+c. On Driver Parameters child tab click on + to add a new Driver Parameter:
+
+4. For the new parameter set:
+Name = Mail Servlet URL
+
+Required = checked
+
+Default Value = http://localhost:<Siebel Server Container HTTP port for server running Communication Inbound Receiver component>/siebel/mail. The http port can be verify in SIEBEL_ROOT\applicationcontainer_internal\conf\server.xml and check the line that defines the http port for the container (search for string ""protocol=""HTTP/1.1"""" and check the line that is not commented out.",,,,3,Siebel CRM,CMSRVMLQ2968,CMMDRVRSQ2968,WEEK,MON,Accounting to Financial Reports: Reporting,"Customer updating to Siebel CRM 21.3 and later must create a new Internet SMTP/IMAP Server or Internet SMTP/POP3 Server driver parameter to support the new 64bit Email Driver, otherwise it will stop working.",Siebel - CRM,Interaction
+SIEBEL_WF_MONITOR_DEFINITION_LEVEL_NOT_FOUND,"SELECT 
+  'Y' AS Event, 
+  'In 20.12, Workflow Monitoring When Enabled In RR Gives Error ""SBL-BPR-00236: A Workflow Monitor Definition Level was not found"" (Doc ID 2764540.1)' AS Solution, 
+  'Name= ' || name || ' Version_num= ' || version_num AS Key_data 
+FROM 
+  siebel.s_rr_workflow rrwf 
+WHERE 
+  NOT EXISTS (
+    SELECT 
+      * 
+    FROM 
+      siebel.s_wfa_defn_log 
+    WHERE 
+      name = rrwf.name 
+      AND version_num = rrwf.version_num
+  )
+",2764540.1,WF Monitoring in RR in 20.12 is not possible and you would need to apply 21.2 to take advantage of WF Monitoring.,,,,2,Siebel CRM,WRKFLWQ2968,PRCSSCNFQ2968,WEEK,MON,P2P: Purchasing,,Siebel - CRM,Siebel CRM
+SIEBEL_EMAIL_DELIVERY_STATUS_DOMAIN,"SELECT
+  'Y' AS Event, 
+  'Doc ID 2173083.1' AS Solution,
+  'Name= ' || name || ' Default Value= ' || dflt_value || ' ' || 'Id ' || cm_cnctr_id AS Key_data
+FROM 
+  SIEBEL.s_cm_cnctr_parm 
+WHERE 
+  dflt_value IS NOT NULL 
+  AND cm_cnctr_id IN (
+    SELECT 
+      row_id 
+    FROM 
+     SIEBEL. s_cm_cnctr 
+    WHERE 
+      LOWER(name)= 'internet smtp/imap server' 
+      OR LOWER(name)= 'internet smtp/pop3 server'
+  ) 
+  AND (
+    LOWER(name)= 'delivery status domain' 
+    OR LOWER(name)= 'delivery status mailbox'
+  );",2173083.1,"This issue reported as Bug 24470979.
+
+ Development team confirmed Delivery Status Domain & Delivery Status Mailbox Parameters are specific to Siebel marketing application and not for Siebel Email response. But user still wants to use these parameters in Siebel Email response then they need to upgrade their Siebel version to 21.6 and they need to add one more driver parameter ie ""Enable Set Message-ID"" and set value to ""FALSE"".",,,,2,Siebel CRM,CMSRVMLQ2968,EMLCNFGRQ2968,WEEK,SUN,Accounting to Financial Reports: Reporting,During peak load there is chance of missing outbound mails from Siebel to end users,Siebel - CRM,Interaction
+SIEBEL_TXN_ROUTING_BACKLOG,"SELECT
+'Siebel Remote : Transaction Router Failures (Doc ID 477156.1)' AS SOLUTION,
+ nvl(RS.R_DXFILE - CS.C_DXFILE,0) as EVENT_RAISED
+FROM 
+(
+ SELECT 
+ ST.ROW_ID, 
+ ST.NODE_ID, 
+ N.NAME, 
+ ST.TYPE, 
+ ST.LAST_FILE_NUM C_DXFILE,
+ ST.LAST_TXN_NUM C_TXNID,
+ TO_CHAR (ST.LAST_UPD, 'DD-MON-YY HH24:MI:SS') C_LAST_UPD,
+ ST.ADDTL_INFO
+FROM 
+SIEBEL.S_DOCK_STATUS ST,
+SIEBEL.S_NODE N
+WHERE 
+st.NODE_ID=n.ROW_ID 
+AND st.LOCAL_FLG='Y' 
+AND st.TYPE = 'CLEAN' 
+AND n.NODE_TYPE_CD='TXNPROC' 
+AND n.EFF_END_DT is null) CS,
+(SELECT 
+ST.ROW_ID, 
+ST.NODE_ID, 
+N.NAME, 
+ST.TYPE, 
+ST.LAST_FILE_NUM R_DXFILE, 
+ST.LAST_TXN_NUM R_TXNID,
+TO_CHAR (ST.LAST_UPD, 'DD-MON-YY HH24:MI:SS') R_LAST_UPD,
+ST.ADDTL_INFO
+FROM 
+SIEBEL.S_DOCK_STATUS ST,
+SIEBEL.S_NODE N
+WHERE ST.NODE_ID=N.ROW_ID AND
+ST.LOCAL_FLG='Y' AND
+ST.TYPE = 'ROUTE' AND
+N.NODE_TYPE_CD='TXNPROC' AND
+N.EFF_END_DT IS NULL) RS
+WHERE RS.NODE_ID = CS.NODE_ID
+",477156.1,"Siebel Remote Transaction router backlog identified:
+
+This has to analyzed and fixed, as documented in ""Siebel Remote : Transaction Router Failures (Doc ID 477156.1)""
+Please let us know if you want to fix backlog, if yes please upload files as requested in: SRDC - Data Collection for the Troubleshooting of Siebel Remote - Transaction Processor (TxnProc) and Transaction Router (TxnRoute) issues (Doc ID 2511777.1)",,,,2,Siebel Remote,RMRPAWQ3897,DCKRTRQ3897,HOUR,1,,"Router is not routing the .DX files or there are routing performance issue / DX Files accumulating in docking/TXNPROC directory.
+
+Business can experience delay on processing and routing transactions to remote users.",Siebel - CRM,Siebel CRM
+SIEBEL_S_COMM_REQ,"SELECT
+('CREATED = ' || TO_CHAR(FROM_TZ(CAST(T1.CREATED AS TIMESTAMP), 'GMT') AT TIME ZONE 'US/Eastern', 'MM-DD-YYYY HH:MI:SS AM') 
+|| '; CREATED_BY = ' || T2.LOGIN || '; REQ_NUM = ' || T1.REQ_NUM 
+|| '; BUS_OBJ_NAME = ' || T1.BUS_OBJ_NAME 
+|| '; RECIP_BC_NAME = ' || T1.RECIP_BC_NAME 
+|| '; RECIP_SRCH_SPEC = ' || T1.RECIP_SRCH_SPEC 
+|| '; T1.STATUS_MSG = ' || T1.STATUS_MSG) AS KEY_DATA,
+'Proposed solution:Smart Sensor for MAU Project NYJC SIEBEL_S_COMM_REQ (Doc ID 2705165.1)' AS SOLUTION, 
+'Y' as EVENT_RAISED
+FROM SIEBEL.S_COMM_REQ T1 
+LEFT OUTER JOIN 
+SIEBEL.S_USER T2 ON T1.CREATED_BY = T2.PAR_ROW_ID 
+WHERE T1.STATUS_CD = 'Incomplete' 
+AND T1.CREATED >= ((CAST(SYSDATE AS TIMESTAMP) AT TIME ZONE 'UTC')-.58/24)
+",2705165.1,"The resolutions actions that can be performed are:
+
+1. Login to Siebel and navigate to Site Map > Administration - Communications > All Outbound Requests.
+
+2. Next query for the failed record using the Request Number provided in the alert.
+
+3. View the detailed information displayed in the ""Status Message"" field and take the appropriate action to resolve.
+
+4. Re-submit the request using the ""Submit"" button if necessary.",,,,2,Siebel Communications,CMSRVMLQ2864,EMLSRVRQ2864,WEEK,MON,Accounting to Financial Reports: Reporting,,Siebel - CRM,Siebel CRM
+SIEBEL_LOY_QUERY_TXN,"SELECT ' Loyalty Transactions not processing' || ' Count= ' ||COUNT(*) KEY_DATA,
+'Not All Loyalty Transactions Are Processed (How To Find And How To Solve) (Doc ID 2664450.1)' AS SOLUTION,
+COUNT(*) as EVENT_RAISED 
+from SIEBEL.S_LOY_TXN 
+where status_cd = 'Queued' 
+and CREATED >= SYSDATE - 1
+group by status_cd
+",2664450.1,"The solution here is to create a new key and move members on to the new key OR to balance the number of members on this key on to the other existing keys (making sure the distribution is equal among the other server keys)
+
+A new key can be created in Loyalty Program Administration > server key mappings
+Select the 'new' item in the dropdown and create a new key on the same server
+For balancing the number of keys of moving the keys, this would have to be a change via the db directly via SQL. The members have a key number, this could be changed via SQL.",,,,2,Siebel Loyalty Engine,LOYALTYQ3635,TRNSCTNNQ3635,DAY,1,,Loyalty Transactions are not processing.,Siebel - CRM,Siebel CRM
+SIEBEL_LOY_SERVER_KEY_MEM,"SELECT 'PARAM_VAL=' ||PARAM_VAL || '; Loyalty Transactions Performance' || ' Count= ' || COUNT(*) KEY_DATA,
+'Loyalty Engine Performance (Balance Of Members On A Server Key) (Doc ID 2664451.1)' AS SOLUTION,
+count(*) as EVENT_RAISED 
+from
+SIEBEL.S_SRM_REQUEST
+where PARAM_VAL LIKE '%Method=ProcessBatch%' 
+and CREATED >= SYSDATE - 1
+group by param_val",2664451.1,"The solution is to equally distribute the new members among the existing server keys or to create a new server key (updating the Min/Max MT Server parameters on the Loyalty Batch engine) and add all new records on to the new key.
+
+To change the Min/Max MT servers, you can navigate to:
+
+Administration - Server Configuration
+Select the batch engine
+In the child view, select the parameters view
+The Min MT task and Max Mt tasks here should be set equal to the number of server key processes (4 server key processes = 4 min and 4 max tasks)
+The rebalancing of the server keys has to be completed via the database. The server keys should be reviewed and re-distributed used the server key column in the Loyalty members table. Please take a backup of the table before making any modifications.",,,,2,Siebel Loyalty Engine,LOYALTYQ3635,TRNSCTNNQ3635,DAY,1,,"Performance in Loyalty transactions.
+Too many members on one key can cause performance problems.",Siebel - CRM,Siebel CRM
+SIEBEL_LOY_PADACCURAL,"SELECT 
+  COUNT(row_id) AS Event, 
+  'Loyalty Transaction Rejected With Error SBL-LTY-5028 Partner Account Debit (PAD) Not Defined (Doc ID 2713452.1)' AS Solution 
+FROM 
+  SIEBEL.s_pgmorg_pnttyp 
+HAVING 
+  COUNT(row_id)= 0;",2713452.1,"Follow below steps to fix this issue - 
+
+1) Navigate to Loyalty program screen - Drilldown on program
+
+2) Navigate to the Partner View (Sub Tab)
+
+3) Navigate to Partner Account Debit View >> Partner Account Debit List Applet
+
+4) Create a record  for every point type
+
+5) Add a conversion rate for every point type.
+
+6) Clear Program Cache by Clicking on Clear Cache Button on Loyalty Administrator Program.",,,,2,Siebel Loyalty Engine,LOYALTYQ3635,,DAY,1,,Transaction processing will be impacted - Loyalty Batch OR Realtime Engine Task will be exited with error SBL-LTY-50281: Partner Account Debit (PAD) conversion is not defined for the current Point Type.,Siebel - CRM,Siebel CRM
