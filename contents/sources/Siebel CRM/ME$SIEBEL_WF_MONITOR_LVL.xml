@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LoganContent oms_version="2.50.2.0.0" name="content_ocid1.tenancy.oc1..aaaaaaaa5s2vdjjrydixjulorcwozffbpna37w5a35p3jhgpyshlkmio6oiq_1650039506307" content_version="2.50.2.0.0" xmlns="http://www.oracle.com/DataCenter/LogAnalyticsStd">
+    <Field oms_version="2.50.2.0.0">
+        <DisplayName>sensor</DisplayName>
+        <FieldType>1</FieldType>
+        <IsSystem>0</IsSystem>
+        <IsPrimary>1</IsPrimary>
+        <DataType>STRING</DataType>
+        <IsMetricKeyEligible>0</IsMetricKeyEligible>
+        <IsMetricValueEligible>0</IsMetricValueEligible>
+        <FacetEligible>1</FacetEligible>
+        <RangeFacetEligible>0</RangeFacetEligible>
+        <TableEligible>1</TableEligible>
+        <FacetPriority>1</FacetPriority>
+        <Summarizable>1</Summarizable>
+        <HighCardinality>1</HighCardinality>
+        <LargeData>0</LargeData>
+        <MultiValued>0</MultiValued>
+        <SMAEnabledSetting>0</SMAEnabledSetting>
+    </Field>
+    
+    <Tag>
+<Name>#medium_severity_sensor</Name>
+<DisplayName>Medium Severity Sensor</DisplayName>
+<IsSystem>0</IsSystem>
+<ProblemPriority>MEDIUM</ProblemPriority>
+</Tag>
+    <Source name="Siebel Sensor: SIEBEL_WF_MONITOR_LVL - Daily" oms_version="2.50.2.0.0" configWarningSettings="0">
+    <SourceType>database_sql</SourceType>
+    <TargetTypes>
+        <TargetType>omc_oracle_db_instance</TargetType>
+        <TargetType>omc_oracle_pdb</TargetType>
+    </TargetTypes>
+    <DisplayName>Siebel Sensor: SIEBEL_WF_MONITOR_LVL - Daily</DisplayName>
+    <Description><![CDATA[]]></Description>
+    <IsSystem>0</IsSystem>
+    <IsSecureContent>1</IsSecureContent>
+    <Patterns>
+        <DBPattern dateTimeField="entrytime" dateTimeColumns="entrytime">
+        <SQLQuery>
+            <![CDATA[select 'Siebel Sensor: SIEBEL_WF_MONITOR_LVL - Daily' sensor, to_timestamp(to_char(sysdate, 'YYYY-MM-DD hh24:mi:ss'), 'YYYY-MM-DD hh24:mi:ss') entrytime, s.KEY_DATA FROM (SELECT     (      'ROW_ID = ' || wf.row_id || '; NAME = ' || wf.name || '; DATE CREATED = ' || wf.created || '; MONITOR LEVEL CD= ' || wf.monitor_lvl_cd    ) AS Key_data,     'Proposed solution: High Volume of Data Collected in Tables S_WFA_INST_LOG, S_WFA_INSTP_LOG, and S_WFA_STPRP_LOG (Doc ID 478169.1)' Solution,     'Y' as Event_raised   FROM     siebel.s_wfa_dploy_def wf,     siebel.s_app_ver vs   WHERE     UPPER(wf.monitor_lvl_cd) <> 'NONE'     AND wf.last_upd < (SYSDATE - 1)     AND (      TO_NUMBER(        SUBSTR(vs.app_ver, 2, 3)      )< 20       OR vs.app_ver IN (        'v20.1', 'v20.2', 'v20.3', 'v20.4',         'v20.5', 'v20.6'      )    )   UNION   SELECT     (      'ROW_ID = ' || wf.row_id || '; NAME = ' || wf.name || '; DATE CREATED = ' || wf.created || '; MONITOR LEVEL CD= ' || wf.monitor_lvl_cd    ) AS Key_data,     'Proposed solution: High Volume of Data Collected in Tables S_WFA_INST_LOG, S_WFA_INSTP_LOG, and S_WFA_STPRP_LOG (Doc ID 478169.1)' Solution,     'Y' as Event_raised   FROM     siebel.s_rr_workflow wf,     siebel.s_app_ver vs   WHERE     UPPER(wf.monitor_lvl_cd) <> 'NONE'     AND wf.last_upd < (SYSDATE - 1)     AND (      TO_NUMBER(        SUBSTR(vs.app_ver, 2, 3)      )>= 21       OR vs.app_ver IN (        'v20.7', 'v20.8', 'v20.3', 'v20.9',         'v20.10', 'v20.11', 'v20.12'      )    )) s]]>
+        </SQLQuery>
+        <IsInclude>1</IsInclude>
+            <InUse>1</InUse>
+            <DBQueryFieldList>
+                <DBPatternSeqField>entrytime</DBPatternSeqField>
+                <DBPatternField>
+                    <DBQueryColName>sensor</DBQueryColName>
+                    <FieldName>udfs1</FieldName>
+                </DBPatternField>
+                <DBPatternField>
+                    <DBQueryColName>entrytime</DBQueryColName>
+                    <FieldName>time</FieldName>
+                </DBPatternField>
+                <DBPatternField>
+                                        <DBQueryColName>KEY_DATA</DBQueryColName>
+                                        <FieldName>data</FieldName>
+                                   </DBPatternField>
+            </DBQueryFieldList>
+            <IsSystem>0</IsSystem>
+            <IsEnabled>1</IsEnabled>
+            </DBPattern>
+    </Patterns>
+        <TagConditions>
+            <TagCondition operator="CONTAINS_REGEX" field="udfs1" alertRuleVisible="0">
+                <ConditionValues>
+                    <ConditionValue>%</ConditionValue>
+                </ConditionValues>
+                <ConditionTags tagField="mtag">
+                    <ConditionTag>#medium_severity_sensor</ConditionTag>
+                </ConditionTags>
+                <IsSystem>0</IsSystem>
+                <IsEnabled>1</IsEnabled>
+            </TagCondition>
+        </TagConditions>
+        <IsHidden>0</IsHidden>
+        <IsSMAEnabled>0</IsSMAEnabled>
+    </Source>
+    <FieldNameMaps>
+        <FieldNameMap>
+            <Name>udfs1</Name>
+            <DisplayName>sensor</DisplayName>
+        </FieldNameMap>
+        
+    </FieldNameMaps>
+</LoganContent>

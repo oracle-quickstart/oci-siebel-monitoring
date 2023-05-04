@@ -91,12 +91,16 @@ variables:
     required: true
     enum: 
     - Siebel CRM
-    - Siebel System Admin
+    - Siebel Communications
+    - Siebel Email Response
+    - Siebel Loyalty Engine
+    - Siebel Loyalty Manager
+    - Siebel Marketing
+    - Siebel Product Configurator
+    - Siebel Remote
+    - Siebel Reports
+    - Siebel Tools
     - Siebel Workflow
-    - Siebel Remote, 
-    - Siebel Loyalty
-    - Siebel Client Functionality
-    - Siebel Reports 
     additionalProps:
       allowMultiple: true
       minItems: 1
