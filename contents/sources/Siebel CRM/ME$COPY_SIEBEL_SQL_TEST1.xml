@@ -25,20 +25,20 @@
 <IsSystem>0</IsSystem>
 <ProblemPriority>MEDIUM</ProblemPriority>
 </Tag>
-    <Source name="Siebel Sensor: SIEBEL_LOY_QUERY_TXN - Daily" oms_version="2.50.2.0.0" configWarningSettings="0">
+    <Source name="Siebel Sensor: COPY_SIEBEL_SQL_TEST1 - Daily" oms_version="2.50.2.0.0" configWarningSettings="0">
     <SourceType>database_sql</SourceType>
     <TargetTypes>
         <TargetType>omc_oracle_db_instance</TargetType>
         <TargetType>omc_oracle_pdb</TargetType>
     </TargetTypes>
-    <DisplayName>Siebel Sensor: SIEBEL_LOY_QUERY_TXN - Daily</DisplayName>
+    <DisplayName>Siebel Sensor: COPY_SIEBEL_SQL_TEST1 - Daily</DisplayName>
     <Description><![CDATA[]]></Description>
     <IsSystem>0</IsSystem>
     <IsSecureContent>1</IsSecureContent>
     <Patterns>
         <DBPattern dateTimeField="entrytime" dateTimeColumns="entrytime">
         <SQLQuery>
-            <![CDATA[select 'Siebel Sensor: SIEBEL_LOY_QUERY_TXN - Daily' sensor, to_timestamp(to_char(sysdate, 'YYYY-MM-DD hh24:mi:ss'), 'YYYY-MM-DD hh24:mi:ss') entrytime, s.KEY_DATA, s.EVENT_RAISED FROM (SELECT ' Loyalty Transactions not processing' || ' Count= ' ||COUNT(*) KEY_DATA,  'Not All Loyalty Transactions Are Processed (How To Find And How To Solve) (Doc ID 2664450.1)' AS SOLUTION,  COUNT(*) as EVENT_RAISED   from SIEBEL.S_LOY_TXN   where status_cd = 'Queued'   and CREATED >= SYSDATE - 1  group by status_cd  ) s]]>
+            <![CDATA[select 'Siebel Sensor: COPY_SIEBEL_SQL_TEST1 - Daily' sensor, to_timestamp(to_char(sysdate, 'YYYY-MM-DD hh24:mi:ss'), 'YYYY-MM-DD hh24:mi:ss') entrytime, s.EVENT FROM (SELECT DISTINCT COUNT(*) AS EVENT  FROM SIEBEL.S_CONTACT) s]]>
         </SQLQuery>
         <IsInclude>1</IsInclude>
             <InUse>1</InUse>
@@ -53,9 +53,6 @@
                     <FieldName>time</FieldName>
                 </DBPatternField>
                 <DBPatternField>
-                                        <DBQueryColName>KEY_DATA</DBQueryColName>
-                                        <FieldName>probkey</FieldName>
-                                   </DBPatternField><DBPatternField>
                                         <DBQueryColName>COUNT</DBQueryColName>
                                         <FieldName>eventcount</FieldName>
                                    </DBPatternField>
