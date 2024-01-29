@@ -117,7 +117,6 @@ variables:
 
   vcn_ocid:
     title: Select existing VCN
-    title: Select existing VCN
     type: oci:core:vcn:id
     dependsOn:
       compartmentId: db_compartment

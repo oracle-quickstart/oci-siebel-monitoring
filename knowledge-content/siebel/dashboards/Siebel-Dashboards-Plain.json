@@ -1,14 +1,14 @@
 {
 	"dashboards": [
 		{
-			"dashboardId": "b2NpZDEubWFuYWdlbWVudGRhc2hib2FyZC5vYzEuLmFhYWFhYWFheXNuanRpamVza2NyaHJhdnM0aXR5NWxmcXp5cTVsNzN3ZGNjczRwMjdkZTZ6eGljaGQ3cQ==",
+			"dashboardId": "ocid1.managementdashboard.oc1..aaaaaaaaysnjtijeskcrhravs4ity5lfqzyq5l73wdccs4p27de6zxichd7q",
 			"providerId": "log-analytics",
 			"providerName": "Logging Analytics",
 			"providerVersion": "3.0.0",
 			"tiles": [
 				{
 					"displayName": "Siebel",
-					"savedSearchId": "b2NpZDEubWFuYWdlbWVudHNhdmVkc2VhcmNoLm9jMS4uYWFhYWFhYWFpYnRoZWZla2tteGtqZ2RmaGk2emF0NmRjcW9tNWEydGR4bHMyaXE3M3BrMm5oZWUyZ2xh",
+					"savedSearchId": "ocid1.managementsavedsearch.oc1..aaaaaaaaibthefekkmxkjgdfhi6zat6dcqom5a2tdxls2iq73pk2nhee2gla",
 					"row": 0,
 					"column": 2,
 					"height": 2,
@@ -26,7 +26,7 @@
 				},
 				{
 					"displayName": "Unique",
-					"savedSearchId": "b2NpZDEubWFuYWdlbWVudHNhdmVkc2VhcmNoLm9jMS4uYWFhYWFhYWFoanNxbTJoaHVuM3p0encybGs2eHcyNHp2NnY3MmRsYnFvY3lxbGVuMmR0cmc0dXB5dnVx",
+					"savedSearchId": "ocid1.managementsavedsearch.oc1..aaaaaaaahjsqm2hhun3ztzw2lk6xw24zv6v72dlbqocyqlen2dtrg4upyvuq",
 					"row": 0,
 					"column": 0,
 					"height": 2,
@@ -44,7 +44,7 @@
 				},
 				{
 					"displayName": "Security: Activity Trends on DBs ",
-					"savedSearchId": "b2NpZDEubWFuYWdlbWVudHNhdmVkc2VhcmNoLm9jMS4uYWFhYWFhYWFhcHQ0N2NtNXpjYWE3YjQ3ajJ5cDVqdTZ5ejVoeDI1M2YzeG8yanpiN2h1ZXRobDJqcnBx",
+					"savedSearchId": "ocid1.managementsavedsearch.oc1..aaaaaaaaapt47cm5zcaa7b47j2yp5ju6yz5hx253f3xo2jzb7huethl2jrpq",
 					"row": 13,
 					"column": 8,
 					"height": 3,
@@ -62,7 +62,7 @@
 				},
 				{
 					"displayName": "Siebel Exception Codes with Help",
-					"savedSearchId": "b2NpZDEubWFuYWdlbWVudHNhdmVkc2VhcmNoLm9jMS4uYWFhYWFhYWE3NGozdmU2Nm5ibHp5bW02b2ZvbWR1bGFrd21pcXBzM3R0Yml6MnQ2aDZ5ZjZjZ2V3bXVh",
+					"savedSearchId": "ocid1.managementsavedsearch.oc1..aaaaaaaa74j3ve66nblzymm6ofomdulakwmiqps3ttbiz2t6h6yf6cgewmua",
 					"row": 16,
 					"column": 6,
 					"height": 4,
@@ -80,7 +80,7 @@
 				},
 				{
 					"displayName": "Log Errors Type and Component Correlation",
-					"savedSearchId": "b2NpZDEubWFuYWdlbWVudHNhdmVkc2VhcmNoLm9jMS4uYWFhYWFhYWFtemV1cGxsdmFlYndwZ2ZoZ2hoY3ppaGxkY3hxYnFtajc1emh0cml5NmtmcGdydHFjZjRh",
+					"savedSearchId": "ocid1.managementsavedsearch.oc1..aaaaaaaamzeupllvaebwpgfhghhczihldcxqbqmj75zhtriy6kfpgrtqcf4a",
 					"row": 16,
 					"column": 0,
 					"height": 4,
@@ -98,7 +98,7 @@
 				},
 				{
 					"displayName": "Siebel Error Labels",
-					"savedSearchId": "b2NpZDEubWFuYWdlbWVudHNhdmVkc2VhcmNoLm9jMS4uYWFhYWFhYWF4dnlmcWFsYm13enhmeXR3aW9kcG9vcnc1dGFuM2ppd3FtZ2RqaGI2endjeDdxZmk0Y21h",
+					"savedSearchId": "ocid1.managementsavedsearch.oc1..aaaaaaaaxvyfqalbmwzxfytwiodpoorw5tan3jiwqmgdjhb6zwcx7qfi4cma",
 					"row": 13,
 					"column": 0,
 					"height": 3,
@@ -116,7 +116,7 @@
 				},
 				{
 					"displayName": "Siebel Exception Codes",
-					"savedSearchId": "b2NpZDEubWFuYWdlbWVudHNhdmVkc2VhcmNoLm9jMS4uYWFhYWFhYWFjcm43djV2ZDd1Zmp1bnRibTN2dGs2dWRiZWczaTM1eXA1NmZpYXE0aGg3ZDdrenFzYzNh",
+					"savedSearchId": "ocid1.managementsavedsearch.oc1..aaaaaaaacrn7v5vd7ufjuntbm3vtk6udbeg3i35yp56fiaq4hh7d7kzqsc3a",
 					"row": 13,
 					"column": 4,
 					"height": 3,
@@ -134,7 +134,7 @@
 				},
 				{
 					"displayName": "Siebel Deployment - Problem Log Clusters",
-					"savedSearchId": "b2NpZDEubWFuYWdlbWVudHNhdmVkc2VhcmNoLm9jMS4uYWFhYWFhYWEzbWtpZjd0a3h4b2M3bmF4dXk3NTNidnY1a3o1YXp5dnpteGV2bG9zdWpxZGh1bmpkazVx",
+					"savedSearchId": "ocid1.managementsavedsearch.oc1..aaaaaaaa3mkif7tkxxoc7naxuy753bvv5kz5azyvzmxevlosujqdhunjdk5q",
 					"row": 9,
 					"column": 0,
 					"height": 4,
@@ -152,7 +152,7 @@
 				},
 				{
 					"displayName": "Component Activity Distribution",
-					"savedSearchId": "b2NpZDEubWFuYWdlbWVudHNhdmVkc2VhcmNoLm9jMS4uYWFhYWFhYWE3NTVjb25qd3Zid3M2ZTdwY2pzNTVtcm81bnF6dHh3cW13c3Z0bXp1enR2NXRiaGx0aW1h",
+					"savedSearchId": "ocid1.managementsavedsearch.oc1..aaaaaaaa755conjwvbws6e7pcjs55mro5nqztxwqmwsvtmzuztv5tbhltima",
 					"row": 2,
 					"column": 4,
 					"height": 3,
@@ -170,7 +170,7 @@
 				},
 				{
 					"displayName": "Database Logs Trend",
-					"savedSearchId": "b2NpZDEubWFuYWdlbWVudHNhdmVkc2VhcmNoLm9jMS4uYWFhYWFhYWFzMnFnc2N2M3prdDd1enVsenU3ejNuMmRuNTR6d3Z2M2JtN3NzNzVidzVsYWoyd2F2Nm5x",
+					"savedSearchId": "ocid1.managementsavedsearch.oc1..aaaaaaaas2qgscv3zkt7uzulzu7z3n2dn54zwvv3bm7ss75bw5laj2wav6nq",
 					"row": 2,
 					"column": 0,
 					"height": 3,
@@ -188,7 +188,7 @@
 				},
 				{
 					"displayName": "Database Entities with Log Errors",
-					"savedSearchId": "b2NpZDEubWFuYWdlbWVudHNhdmVkc2VhcmNoLm9jMS4uYWFhYWFhYWEya3VuaGZxdHplNmc1enNmazVpaHQ3ZzJpbnRiMzJnM2FldTNnM3hvZ29icnZycnBxcDdh",
+					"savedSearchId": "ocid1.managementsavedsearch.oc1..aaaaaaaa2kunhfqtze6g5zsfk5iht7g2intb32g3aeu3g3xogobrvrrpqp7a",
 					"row": 2,
 					"column": 8,
 					"height": 3,
@@ -206,7 +206,7 @@
 				},
 				{
 					"displayName": "Exception Codes",
-					"savedSearchId": "b2NpZDEubWFuYWdlbWVudHNhdmVkc2VhcmNoLm9jMS4uYWFhYWFhYWF3Mzd5NWQyaXVpMjJmMml4M2t2aHA3Z3g2NXRnM2dld2d3ZGxhdXdibmwyenE1YnRtZGZh",
+					"savedSearchId": "ocid1.managementsavedsearch.oc1..aaaaaaaaw37y5d2iui22f2ix3kvhp7gx65tg3gewgwdlauwbnl2zq5btmdfa",
 					"row": 9,
 					"column": 8,
 					"height": 4,
@@ -224,7 +224,7 @@
 				},
 				{
 					"displayName": "Siebel Log Sources - Trend",
-					"savedSearchId": "b2NpZDEubWFuYWdlbWVudHNhdmVkc2VhcmNoLm9jMS4uYWFhYWFhYWE1Mjdva3FraXFiN2tmMjZybjRlbWZoajNrYnhnYmdoNnVmMm14ZWd6aTN4dHB5aTNqcnZx",
+					"savedSearchId": "ocid1.managementsavedsearch.oc1..aaaaaaaa527okqkiqb7kf26rn4emfhj3kbxgbgh6uf2mxegzi3xtpyi3jrvq",
 					"row": 0,
 					"column": 4,
 					"height": 2,
@@ -242,7 +242,7 @@
 				},
 				{
 					"displayName": "Siebel Exception Codes and Components Correlation",
-					"savedSearchId": "b2NpZDEubWFuYWdlbWVudHNhdmVkc2VhcmNoLm9jMS4uYWFhYWFhYWFscXduczNoMmxqcWdhbzNzdWtjeTRrcWk1Ym9wNjVmZGZ0aDQyM2lsaXg0ZGVpNnVpZmZh",
+					"savedSearchId": "ocid1.managementsavedsearch.oc1..aaaaaaaalqwns3h2ljqgao3sukcy4kqi5bop65fdfth423ilix4dei6uiffa",
 					"row": 20,
 					"column": 0,
 					"height": 3,
@@ -260,7 +260,7 @@
 				},
 				{
 					"displayName": "Siebel Business Checks",
-					"savedSearchId": "b2NpZDEubWFuYWdlbWVudHNhdmVkc2VhcmNoLm9jMS4uYWFhYWFhYWFlZG80aXVweWp0YTUyaHRrampicGp1ZHg0Nng1YW94dDdqcnJ3cmFnN2o2bm43azNjbmlx",
+					"savedSearchId": "ocid1.managementsavedsearch.oc1..aaaaaaaaedo4iupyjta52htkjjbpjudx46x5aoxt7jrrwrag7j6nn7k3cniq",
 					"row": 5,
 					"column": 0,
 					"height": 4,
@@ -296,12 +296,12 @@
 			"isFavorite": false,
 			"savedSearches": [
 				{
-					"id": "b2NpZDEubWFuYWdlbWVudHNhdmVkc2VhcmNoLm9jMS4uYWFhYWFhYWFlZG80aXVweWp0YTUyaHRrampicGp1ZHg0Nng1YW94dDdqcnJ3cmFnN2o2bm43azNjbmlx",
+					"id": "ocid1.managementsavedsearch.oc1..aaaaaaaaedo4iupyjta52htkjjbpjudx46x5aoxt7jrrwrag7j6nn7k3cniq",
 					"displayName": "Siebel Business Checks",
 					"providerId": "log-analytics",
 					"providerVersion": "3.0.0",
 					"providerName": "Logging Analytics",
-					"compartmentId": "${compartment_ocid}",
+					"compartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 					"isOobSavedSearch": false,
 					"description": "Siebel Business Checks",
 					"nls": {},
@@ -477,7 +477,7 @@
 									"type": "Entity",
 									"flags": {
 										"IncludeDependents": true,
-										"ScopeCompartmentId": "${compartment_ocid}"
+										"ScopeCompartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q"
 									},
 									"values": []
 								},
@@ -526,7 +526,7 @@
 								"type": "Entity",
 								"flags": {
 									"IncludeDependents": true,
-									"ScopeCompartmentId": "${compartment_ocid}"
+									"ScopeCompartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q"
 								},
 								"values": []
 							},
@@ -620,12 +620,12 @@
 					"drilldownConfig": []
 				},
 				{
-					"id": "b2NpZDEubWFuYWdlbWVudHNhdmVkc2VhcmNoLm9jMS4uYWFhYWFhYWFpYnRoZWZla2tteGtqZ2RmaGk2emF0NmRjcW9tNWEydGR4bHMyaXE3M3BrMm5oZWUyZ2xh",
+					"id": "ocid1.managementsavedsearch.oc1..aaaaaaaaibthefekkmxkjgdfhi6zat6dcqom5a2tdxls2iq73pk2nhee2gla",
 					"displayName": "Unique Exception Codes",
 					"providerId": "log-analytics",
 					"providerVersion": "2.0",
 					"providerName": "Logging Analytics",
-					"compartmentId": "${compartment_ocid}",
+					"compartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 					"isOobSavedSearch": false,
 					"description": "Unique Exception Codes",
 					"nls": {},
@@ -661,7 +661,7 @@
 									"type": "Entity",
 									"flags": {
 										"IncludeDependents": true,
-										"ScopeCompartmentId": "${compartment_ocid}"
+										"ScopeCompartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q"
 									},
 									"values": []
 								},
@@ -677,7 +677,7 @@
 									},
 									"values": [
 										{
-											"value": "${compartment_ocid}",
+											"value": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 											"label": "LogAnalytics"
 										}
 									]
@@ -705,7 +705,7 @@
 								"type": "Entity",
 								"flags": {
 									"IncludeDependents": true,
-									"ScopeCompartmentId": "${compartment_ocid}"
+									"ScopeCompartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q"
 								},
 								"values": []
 							},
@@ -721,7 +721,7 @@
 								},
 								"values": [
 									{
-										"value": "${compartment_ocid}",
+										"value": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 										"label": "LogAnalytics"
 									}
 								]
@@ -739,12 +739,12 @@
 					"drilldownConfig": []
 				},
 				{
-					"id": "b2NpZDEubWFuYWdlbWVudHNhdmVkc2VhcmNoLm9jMS4uYWFhYWFhYWFtemV1cGxsdmFlYndwZ2ZoZ2hoY3ppaGxkY3hxYnFtajc1emh0cml5NmtmcGdydHFjZjRh",
+					"id": "ocid1.managementsavedsearch.oc1..aaaaaaaamzeupllvaebwpgfhghhczihldcxqbqmj75zhtriy6kfpgrtqcf4a",
 					"displayName": "Log Errors Type and Component Correlation",
 					"providerId": "log-analytics",
 					"providerVersion": "2.0",
 					"providerName": "Logging Analytics",
-					"compartmentId": "${compartment_ocid}",
+					"compartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 					"isOobSavedSearch": false,
 					"description": "Log Errors Type and Component Correlation",
 					"nls": {},
@@ -849,7 +849,7 @@
 									"type": "Entity",
 									"flags": {
 										"IncludeDependents": true,
-										"ScopeCompartmentId": "${compartment_ocid}"
+										"ScopeCompartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q"
 									},
 									"values": []
 								},
@@ -865,7 +865,7 @@
 									},
 									"values": [
 										{
-											"value": "${compartment_ocid}",
+											"value": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 											"label": "LogAnalytics"
 										}
 									]
@@ -893,7 +893,7 @@
 								"type": "Entity",
 								"flags": {
 									"IncludeDependents": true,
-									"ScopeCompartmentId": "${compartment_ocid}"
+									"ScopeCompartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q"
 								},
 								"values": []
 							},
@@ -909,7 +909,7 @@
 								},
 								"values": [
 									{
-										"value": "${compartment_ocid}",
+										"value": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 										"label": "LogAnalytics"
 									}
 								]
@@ -927,12 +927,12 @@
 					"drilldownConfig": []
 				},
 				{
-					"id": "b2NpZDEubWFuYWdlbWVudHNhdmVkc2VhcmNoLm9jMS4uYWFhYWFhYWE3NTVjb25qd3Zid3M2ZTdwY2pzNTVtcm81bnF6dHh3cW13c3Z0bXp1enR2NXRiaGx0aW1h",
+					"id": "ocid1.managementsavedsearch.oc1..aaaaaaaa755conjwvbws6e7pcjs55mro5nqztxwqmwsvtmzuztv5tbhltima",
 					"displayName": "Component Activity Distribution",
 					"providerId": "log-analytics",
 					"providerVersion": "2.0",
 					"providerName": "Logging Analytics",
-					"compartmentId": "${compartment_ocid}",
+					"compartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 					"isOobSavedSearch": false,
 					"description": "Component Activity Distribution",
 					"nls": {},
@@ -968,7 +968,7 @@
 									"type": "Entity",
 									"flags": {
 										"IncludeDependents": true,
-										"ScopeCompartmentId": "${compartment_ocid}"
+										"ScopeCompartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q"
 									},
 									"values": []
 								},
@@ -984,7 +984,7 @@
 									},
 									"values": [
 										{
-											"value": "${compartment_ocid}",
+											"value": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 											"label": "LogAnalytics"
 										}
 									]
@@ -1012,7 +1012,7 @@
 								"type": "Entity",
 								"flags": {
 									"IncludeDependents": true,
-									"ScopeCompartmentId": "${compartment_ocid}"
+									"ScopeCompartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q"
 								},
 								"values": []
 							},
@@ -1028,7 +1028,7 @@
 								},
 								"values": [
 									{
-										"value": "${compartment_ocid}",
+										"value": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 										"label": "LogAnalytics"
 									}
 								]
@@ -1046,12 +1046,12 @@
 					"drilldownConfig": []
 				},
 				{
-					"id": "b2NpZDEubWFuYWdlbWVudHNhdmVkc2VhcmNoLm9jMS4uYWFhYWFhYWEzbWtpZjd0a3h4b2M3bmF4dXk3NTNidnY1a3o1YXp5dnpteGV2bG9zdWpxZGh1bmpkazVx",
+					"id": "ocid1.managementsavedsearch.oc1..aaaaaaaa3mkif7tkxxoc7naxuy753bvv5kz5azyvzmxevlosujqdhunjdk5q",
 					"displayName": "Siebel Deployment - Problem Log Clusters",
 					"providerId": "log-analytics",
 					"providerVersion": "2.0",
 					"providerName": "Logging Analytics",
-					"compartmentId": "${compartment_ocid}",
+					"compartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 					"isOobSavedSearch": false,
 					"description": "Siebel Deployment - Problem Log Clusters",
 					"nls": {},
@@ -1092,7 +1092,7 @@
 									"type": "Entity",
 									"flags": {
 										"IncludeDependents": true,
-										"ScopeCompartmentId": "${compartment_ocid}"
+										"ScopeCompartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q"
 									},
 									"values": []
 								},
@@ -1108,7 +1108,7 @@
 									},
 									"values": [
 										{
-											"value": "${compartment_ocid}",
+											"value": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 											"label": "LogAnalytics"
 										}
 									]
@@ -1136,7 +1136,7 @@
 								"type": "Entity",
 								"flags": {
 									"IncludeDependents": true,
-									"ScopeCompartmentId": "${compartment_ocid}"
+									"ScopeCompartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q"
 								},
 								"values": []
 							},
@@ -1152,7 +1152,7 @@
 								},
 								"values": [
 									{
-										"value": "${compartment_ocid}",
+										"value": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 										"label": "LogAnalytics"
 									}
 								]
@@ -1170,12 +1170,12 @@
 					"drilldownConfig": []
 				},
 				{
-					"id": "b2NpZDEubWFuYWdlbWVudHNhdmVkc2VhcmNoLm9jMS4uYWFhYWFhYWFjcm43djV2ZDd1Zmp1bnRibTN2dGs2dWRiZWczaTM1eXA1NmZpYXE0aGg3ZDdrenFzYzNh",
+					"id": "ocid1.managementsavedsearch.oc1..aaaaaaaacrn7v5vd7ufjuntbm3vtk6udbeg3i35yp56fiaq4hh7d7kzqsc3a",
 					"displayName": "Siebel Exception Codes",
 					"providerId": "log-analytics",
 					"providerVersion": "3.0.0",
 					"providerName": "Logging Analytics",
-					"compartmentId": "${compartment_ocid}",
+					"compartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 					"isOobSavedSearch": false,
 					"description": "Siebel Exception Codes",
 					"nls": {},
@@ -1229,7 +1229,7 @@
 									},
 									"values": [
 										{
-											"value": "${compartment_ocid}",
+											"value": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 											"label": "LogAnalytics"
 										}
 									]
@@ -1273,7 +1273,7 @@
 								},
 								"values": [
 									{
-										"value": "${compartment_ocid}",
+										"value": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 										"label": "LogAnalytics"
 									}
 								]
@@ -1328,12 +1328,12 @@
 					"drilldownConfig": []
 				},
 				{
-					"id": "b2NpZDEubWFuYWdlbWVudHNhdmVkc2VhcmNoLm9jMS4uYWFhYWFhYWFscXduczNoMmxqcWdhbzNzdWtjeTRrcWk1Ym9wNjVmZGZ0aDQyM2lsaXg0ZGVpNnVpZmZh",
+					"id": "ocid1.managementsavedsearch.oc1..aaaaaaaalqwns3h2ljqgao3sukcy4kqi5bop65fdfth423ilix4dei6uiffa",
 					"displayName": "Siebel Exception Codes and Components Correlation",
 					"providerId": "log-analytics",
 					"providerVersion": "3.0.0",
 					"providerName": "Logging Analytics",
-					"compartmentId": "${compartment_ocid}",
+					"compartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 					"isOobSavedSearch": false,
 					"description": "Siebel Exception Codes and Components Correlation",
 					"nls": {},
@@ -1624,12 +1624,12 @@
 					"drilldownConfig": []
 				},
 				{
-					"id": "b2NpZDEubWFuYWdlbWVudHNhdmVkc2VhcmNoLm9jMS4uYWFhYWFhYWF3Mzd5NWQyaXVpMjJmMml4M2t2aHA3Z3g2NXRnM2dld2d3ZGxhdXdibmwyenE1YnRtZGZh",
+					"id": "ocid1.managementsavedsearch.oc1..aaaaaaaaw37y5d2iui22f2ix3kvhp7gx65tg3gewgwdlauwbnl2zq5btmdfa",
 					"displayName": "Exception Codes",
 					"providerId": "log-analytics",
 					"providerVersion": "2.0",
 					"providerName": "Logging Analytics",
-					"compartmentId": "${compartment_ocid}",
+					"compartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 					"isOobSavedSearch": false,
 					"description": "Exception Codes",
 					"nls": {},
@@ -1667,7 +1667,7 @@
 									"type": "Entity",
 									"flags": {
 										"IncludeDependents": true,
-										"ScopeCompartmentId": "${compartment_ocid}"
+										"ScopeCompartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q"
 									},
 									"values": []
 								},
@@ -1683,7 +1683,7 @@
 									},
 									"values": [
 										{
-											"value": "${compartment_ocid}",
+											"value": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 											"label": "LogAnalytics"
 										}
 									]
@@ -1711,7 +1711,7 @@
 								"type": "Entity",
 								"flags": {
 									"IncludeDependents": true,
-									"ScopeCompartmentId": "${compartment_ocid}"
+									"ScopeCompartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q"
 								},
 								"values": []
 							},
@@ -1727,7 +1727,7 @@
 								},
 								"values": [
 									{
-										"value": "${compartment_ocid}",
+										"value": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 										"label": "LogAnalytics"
 									}
 								]
@@ -1745,12 +1745,12 @@
 					"drilldownConfig": []
 				},
 				{
-					"id": "b2NpZDEubWFuYWdlbWVudHNhdmVkc2VhcmNoLm9jMS4uYWFhYWFhYWE3NGozdmU2Nm5ibHp5bW02b2ZvbWR1bGFrd21pcXBzM3R0Yml6MnQ2aDZ5ZjZjZ2V3bXVh",
+					"id": "ocid1.managementsavedsearch.oc1..aaaaaaaa74j3ve66nblzymm6ofomdulakwmiqps3ttbiz2t6h6yf6cgewmua",
 					"displayName": "Siebel Exception Codes with Help",
 					"providerId": "log-analytics",
 					"providerVersion": "3.0.0",
 					"providerName": "Logging Analytics",
-					"compartmentId": "${compartment_ocid}",
+					"compartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 					"isOobSavedSearch": false,
 					"description": "Siebel Exception Codes",
 					"nls": {},
@@ -2051,12 +2051,12 @@
 					"drilldownConfig": []
 				},
 				{
-					"id": "b2NpZDEubWFuYWdlbWVudHNhdmVkc2VhcmNoLm9jMS4uYWFhYWFhYWFoanNxbTJoaHVuM3p0encybGs2eHcyNHp2NnY3MmRsYnFvY3lxbGVuMmR0cmc0dXB5dnVx",
+					"id": "ocid1.managementsavedsearch.oc1..aaaaaaaahjsqm2hhun3ztzw2lk6xw24zv6v72dlbqocyqlen2dtrg4upyvuq",
 					"displayName": "Components",
 					"providerId": "log-analytics",
 					"providerVersion": "2.0",
 					"providerName": "Logging Analytics",
-					"compartmentId": "${compartment_ocid}",
+					"compartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 					"isOobSavedSearch": false,
 					"description": "Components",
 					"nls": {},
@@ -2096,7 +2096,7 @@
 									"type": "Entity",
 									"flags": {
 										"IncludeDependents": true,
-										"ScopeCompartmentId": "${compartment_ocid}"
+										"ScopeCompartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q"
 									},
 									"values": []
 								},
@@ -2112,7 +2112,7 @@
 									},
 									"values": [
 										{
-											"value": "${compartment_ocid}",
+											"value": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 											"label": "LogAnalytics"
 										}
 									]
@@ -2140,7 +2140,7 @@
 								"type": "Entity",
 								"flags": {
 									"IncludeDependents": true,
-									"ScopeCompartmentId": "${compartment_ocid}"
+									"ScopeCompartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q"
 								},
 								"values": []
 							},
@@ -2156,7 +2156,7 @@
 								},
 								"values": [
 									{
-										"value": "${compartment_ocid}",
+										"value": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 										"label": "LogAnalytics"
 									}
 								]
@@ -2174,12 +2174,12 @@
 					"drilldownConfig": []
 				},
 				{
-					"id": "b2NpZDEubWFuYWdlbWVudHNhdmVkc2VhcmNoLm9jMS4uYWFhYWFhYWE1Mjdva3FraXFiN2tmMjZybjRlbWZoajNrYnhnYmdoNnVmMm14ZWd6aTN4dHB5aTNqcnZx",
+					"id": "ocid1.managementsavedsearch.oc1..aaaaaaaa527okqkiqb7kf26rn4emfhj3kbxgbgh6uf2mxegzi3xtpyi3jrvq",
 					"displayName": "Siebel Log Sources - Trend",
 					"providerId": "log-analytics",
 					"providerVersion": "2.0",
 					"providerName": "Logging Analytics",
-					"compartmentId": "${compartment_ocid}",
+					"compartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 					"isOobSavedSearch": false,
 					"description": "Siebel Log Sources - Trend",
 					"nls": {},
@@ -2218,7 +2218,7 @@
 									"type": "Entity",
 									"flags": {
 										"IncludeDependents": true,
-										"ScopeCompartmentId": "${compartment_ocid}"
+										"ScopeCompartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q"
 									},
 									"values": []
 								},
@@ -2234,7 +2234,7 @@
 									},
 									"values": [
 										{
-											"value": "${compartment_ocid}",
+											"value": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 											"label": "LogAnalytics"
 										}
 									]
@@ -2262,7 +2262,7 @@
 								"type": "Entity",
 								"flags": {
 									"IncludeDependents": true,
-									"ScopeCompartmentId": "${compartment_ocid}"
+									"ScopeCompartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q"
 								},
 								"values": []
 							},
@@ -2278,7 +2278,7 @@
 								},
 								"values": [
 									{
-										"value": "${compartment_ocid}",
+										"value": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 										"label": "LogAnalytics"
 									}
 								]
@@ -2296,12 +2296,12 @@
 					"drilldownConfig": []
 				},
 				{
-					"id": "b2NpZDEubWFuYWdlbWVudHNhdmVkc2VhcmNoLm9jMS4uYWFhYWFhYWFhcHQ0N2NtNXpjYWE3YjQ3ajJ5cDVqdTZ5ejVoeDI1M2YzeG8yanpiN2h1ZXRobDJqcnBx",
+					"id": "ocid1.managementsavedsearch.oc1..aaaaaaaaapt47cm5zcaa7b47j2yp5ju6yz5hx253f3xo2jzb7huethl2jrpq",
 					"displayName": "Security: Activity Trends on DBs ",
 					"providerId": "log-analytics",
 					"providerVersion": "2.0",
 					"providerName": "Logging Analytics",
-					"compartmentId": "${compartment_ocid}",
+					"compartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 					"isOobSavedSearch": false,
 					"description": "Security: Activity Trends on DBs ",
 					"nls": {},
@@ -2342,7 +2342,7 @@
 									"type": "Entity",
 									"flags": {
 										"IncludeDependents": true,
-										"ScopeCompartmentId": "${compartment_ocid}"
+										"ScopeCompartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q"
 									},
 									"values": []
 								},
@@ -2358,7 +2358,7 @@
 									},
 									"values": [
 										{
-											"value": "${compartment_ocid}",
+											"value": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 											"label": "LogAnalytics"
 										}
 									]
@@ -2386,7 +2386,7 @@
 								"type": "Entity",
 								"flags": {
 									"IncludeDependents": true,
-									"ScopeCompartmentId": "${compartment_ocid}"
+									"ScopeCompartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q"
 								},
 								"values": []
 							},
@@ -2402,7 +2402,7 @@
 								},
 								"values": [
 									{
-										"value": "${compartment_ocid}",
+										"value": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 										"label": "LogAnalytics"
 									}
 								]
@@ -2420,12 +2420,12 @@
 					"drilldownConfig": []
 				},
 				{
-					"id": "b2NpZDEubWFuYWdlbWVudHNhdmVkc2VhcmNoLm9jMS4uYWFhYWFhYWEya3VuaGZxdHplNmc1enNmazVpaHQ3ZzJpbnRiMzJnM2FldTNnM3hvZ29icnZycnBxcDdh",
+					"id": "ocid1.managementsavedsearch.oc1..aaaaaaaa2kunhfqtze6g5zsfk5iht7g2intb32g3aeu3g3xogobrvrrpqp7a",
 					"displayName": "Database Entities with Log Errors",
 					"providerId": "log-analytics",
 					"providerVersion": "2.0",
 					"providerName": "Logging Analytics",
-					"compartmentId": "${compartment_ocid}",
+					"compartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 					"isOobSavedSearch": false,
 					"description": "Database Entities with Log Errors",
 					"nls": {},
@@ -2465,7 +2465,7 @@
 									"type": "Entity",
 									"flags": {
 										"IncludeDependents": true,
-										"ScopeCompartmentId": "${compartment_ocid}"
+										"ScopeCompartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q"
 									},
 									"values": []
 								},
@@ -2481,7 +2481,7 @@
 									},
 									"values": [
 										{
-											"value": "${compartment_ocid}",
+											"value": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 											"label": "LogAnalytics"
 										}
 									]
@@ -2509,7 +2509,7 @@
 								"type": "Entity",
 								"flags": {
 									"IncludeDependents": true,
-									"ScopeCompartmentId": "${compartment_ocid}"
+									"ScopeCompartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q"
 								},
 								"values": []
 							},
@@ -2525,7 +2525,7 @@
 								},
 								"values": [
 									{
-										"value": "${compartment_ocid}",
+										"value": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 										"label": "LogAnalytics"
 									}
 								]
@@ -2543,12 +2543,12 @@
 					"drilldownConfig": []
 				},
 				{
-					"id": "b2NpZDEubWFuYWdlbWVudHNhdmVkc2VhcmNoLm9jMS4uYWFhYWFhYWF4dnlmcWFsYm13enhmeXR3aW9kcG9vcnc1dGFuM2ppd3FtZ2RqaGI2endjeDdxZmk0Y21h",
+					"id": "ocid1.managementsavedsearch.oc1..aaaaaaaaxvyfqalbmwzxfytwiodpoorw5tan3jiwqmgdjhb6zwcx7qfi4cma",
 					"displayName": "Siebel Error Labels",
 					"providerId": "log-analytics",
 					"providerVersion": "2.0",
 					"providerName": "Logging Analytics",
-					"compartmentId": "${compartment_ocid}",
+					"compartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 					"isOobSavedSearch": false,
 					"description": "Siebel Error Labels",
 					"nls": {},
@@ -2584,7 +2584,7 @@
 									"type": "Entity",
 									"flags": {
 										"IncludeDependents": true,
-										"ScopeCompartmentId": "${compartment_ocid}"
+										"ScopeCompartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q"
 									},
 									"values": []
 								},
@@ -2600,7 +2600,7 @@
 									},
 									"values": [
 										{
-											"value": "${compartment_ocid}",
+											"value": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 											"label": "LogAnalytics"
 										}
 									]
@@ -2628,7 +2628,7 @@
 								"type": "Entity",
 								"flags": {
 									"IncludeDependents": true,
-									"ScopeCompartmentId": "${compartment_ocid}"
+									"ScopeCompartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q"
 								},
 								"values": []
 							},
@@ -2644,7 +2644,7 @@
 								},
 								"values": [
 									{
-										"value": "${compartment_ocid}",
+										"value": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 										"label": "LogAnalytics"
 									}
 								]
@@ -2662,12 +2662,12 @@
 					"drilldownConfig": []
 				},
 				{
-					"id": "b2NpZDEubWFuYWdlbWVudHNhdmVkc2VhcmNoLm9jMS4uYWFhYWFhYWFzMnFnc2N2M3prdDd1enVsenU3ejNuMmRuNTR6d3Z2M2JtN3NzNzVidzVsYWoyd2F2Nm5x",
+					"id": "ocid1.managementsavedsearch.oc1..aaaaaaaas2qgscv3zkt7uzulzu7z3n2dn54zwvv3bm7ss75bw5laj2wav6nq",
 					"displayName": "Database Logs Trend",
 					"providerId": "log-analytics",
 					"providerVersion": "2.0",
 					"providerName": "Logging Analytics",
-					"compartmentId": "${compartment_ocid}",
+					"compartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 					"isOobSavedSearch": false,
 					"description": "Database Logs Trend",
 					"nls": {},
@@ -2708,7 +2708,7 @@
 									"type": "Entity",
 									"flags": {
 										"IncludeDependents": true,
-										"ScopeCompartmentId": "${compartment_ocid}"
+										"ScopeCompartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q"
 									},
 									"values": []
 								},
@@ -2724,7 +2724,7 @@
 									},
 									"values": [
 										{
-											"value": "${compartment_ocid}",
+											"value": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 											"label": "LogAnalytics"
 										}
 									]
@@ -2752,7 +2752,7 @@
 								"type": "Entity",
 								"flags": {
 									"IncludeDependents": true,
-									"ScopeCompartmentId": "${compartment_ocid}"
+									"ScopeCompartmentId": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q"
 								},
 								"values": []
 							},
@@ -2768,7 +2768,7 @@
 								},
 								"values": [
 									{
-										"value": "${compartment_ocid}",
+										"value": "ocid1.compartment.oc1..aaaaaaaa4yj2x6hjxntcf5vydrdvsm3trgblkmwgcmvxiar2miklv3ip4t7q",
 										"label": "LogAnalytics"
 									}
 								]
