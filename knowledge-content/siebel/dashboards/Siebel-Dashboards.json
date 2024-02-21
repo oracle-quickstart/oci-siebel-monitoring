@@ -279,7 +279,7 @@
 			],
 			"displayName": "Siebel CRM with Sensors",
 			"description": "Siebel CRM Application Monitoring",
-			"compartmentId": "${compartment_ocid}",
+			"compartmentId": "${var.resource_compartment}",
 			"isOobDashboard": false,
 			"isShowInHome": false,
 			"metadataVersion": "2.0",
@@ -301,7 +301,7 @@
 					"providerId": "log-analytics",
 					"providerVersion": "3.0.0",
 					"providerName": "Logging Analytics",
-					"compartmentId": "${compartment_ocid}",
+					"compartmentId": "${var.resource_compartment}",
 					"isOobSavedSearch": false,
 					"description": "Siebel Business Checks",
 					"nls": {},
@@ -477,7 +477,7 @@
 									"type": "Entity",
 									"flags": {
 										"IncludeDependents": true,
-										"ScopeCompartmentId": "${compartment_ocid}"
+										"ScopeCompartmentId": "${var.resource_compartment}"
 									},
 									"values": []
 								},
@@ -526,7 +526,7 @@
 								"type": "Entity",
 								"flags": {
 									"IncludeDependents": true,
-									"ScopeCompartmentId": "${compartment_ocid}"
+									"ScopeCompartmentId": "${var.resource_compartment}"
 								},
 								"values": []
 							},
@@ -625,7 +625,7 @@
 					"providerId": "log-analytics",
 					"providerVersion": "2.0",
 					"providerName": "Logging Analytics",
-					"compartmentId": "${compartment_ocid}",
+					"compartmentId": "${var.resource_compartment}",
 					"isOobSavedSearch": false,
 					"description": "Unique Exception Codes",
 					"nls": {},
@@ -661,7 +661,7 @@
 									"type": "Entity",
 									"flags": {
 										"IncludeDependents": true,
-										"ScopeCompartmentId": "${compartment_ocid}"
+										"ScopeCompartmentId": "${var.resource_compartment}"
 									},
 									"values": []
 								},
@@ -677,7 +677,7 @@
 									},
 									"values": [
 										{
-											"value": "${compartment_ocid}",
+											"value": "${var.resource_compartment}",
 											"label": "LogAnalytics"
 										}
 									]
@@ -705,7 +705,7 @@
 								"type": "Entity",
 								"flags": {
 									"IncludeDependents": true,
-									"ScopeCompartmentId": "${compartment_ocid}"
+									"ScopeCompartmentId": "${var.resource_compartment}"
 								},
 								"values": []
 							},
@@ -721,7 +721,7 @@
 								},
 								"values": [
 									{
-										"value": "${compartment_ocid}",
+										"value": "${var.resource_compartment}",
 										"label": "LogAnalytics"
 									}
 								]
@@ -744,7 +744,7 @@
 					"providerId": "log-analytics",
 					"providerVersion": "2.0",
 					"providerName": "Logging Analytics",
-					"compartmentId": "${compartment_ocid}",
+					"compartmentId": "${var.resource_compartment}",
 					"isOobSavedSearch": false,
 					"description": "Log Errors Type and Component Correlation",
 					"nls": {},
@@ -849,7 +849,7 @@
 									"type": "Entity",
 									"flags": {
 										"IncludeDependents": true,
-										"ScopeCompartmentId": "${compartment_ocid}"
+										"ScopeCompartmentId": "${var.resource_compartment}"
 									},
 									"values": []
 								},
@@ -865,7 +865,7 @@
 									},
 									"values": [
 										{
-											"value": "${compartment_ocid}",
+											"value": "${var.resource_compartment}",
 											"label": "LogAnalytics"
 										}
 									]
@@ -893,7 +893,7 @@
 								"type": "Entity",
 								"flags": {
 									"IncludeDependents": true,
-									"ScopeCompartmentId": "${compartment_ocid}"
+									"ScopeCompartmentId": "${var.resource_compartment}"
 								},
 								"values": []
 							},
@@ -909,7 +909,7 @@
 								},
 								"values": [
 									{
-										"value": "${compartment_ocid}",
+										"value": "${var.resource_compartment}",
 										"label": "LogAnalytics"
 									}
 								]
@@ -932,7 +932,7 @@
 					"providerId": "log-analytics",
 					"providerVersion": "2.0",
 					"providerName": "Logging Analytics",
-					"compartmentId": "${compartment_ocid}",
+					"compartmentId": "${var.resource_compartment}",
 					"isOobSavedSearch": false,
 					"description": "Component Activity Distribution",
 					"nls": {},
@@ -968,7 +968,7 @@
 									"type": "Entity",
 									"flags": {
 										"IncludeDependents": true,
-										"ScopeCompartmentId": "${compartment_ocid}"
+										"ScopeCompartmentId": "${var.resource_compartment}"
 									},
 									"values": []
 								},
@@ -984,7 +984,7 @@
 									},
 									"values": [
 										{
-											"value": "${compartment_ocid}",
+											"value": "${var.resource_compartment}",
 											"label": "LogAnalytics"
 										}
 									]
@@ -1012,7 +1012,7 @@
 								"type": "Entity",
 								"flags": {
 									"IncludeDependents": true,
-									"ScopeCompartmentId": "${compartment_ocid}"
+									"ScopeCompartmentId": "${var.resource_compartment}"
 								},
 								"values": []
 							},
@@ -1028,7 +1028,7 @@
 								},
 								"values": [
 									{
-										"value": "${compartment_ocid}",
+										"value": "${var.resource_compartment}",
 										"label": "LogAnalytics"
 									}
 								]
@@ -1051,7 +1051,7 @@
 					"providerId": "log-analytics",
 					"providerVersion": "2.0",
 					"providerName": "Logging Analytics",
-					"compartmentId": "${compartment_ocid}",
+					"compartmentId": "${var.resource_compartment}",
 					"isOobSavedSearch": false,
 					"description": "Siebel Deployment - Problem Log Clusters",
 					"nls": {},
@@ -1092,7 +1092,7 @@
 									"type": "Entity",
 									"flags": {
 										"IncludeDependents": true,
-										"ScopeCompartmentId": "${compartment_ocid}"
+										"ScopeCompartmentId": "${var.resource_compartment}"
 									},
 									"values": []
 								},
@@ -1108,7 +1108,7 @@
 									},
 									"values": [
 										{
-											"value": "${compartment_ocid}",
+											"value": "${var.resource_compartment}",
 											"label": "LogAnalytics"
 										}
 									]
@@ -1136,7 +1136,7 @@
 								"type": "Entity",
 								"flags": {
 									"IncludeDependents": true,
-									"ScopeCompartmentId": "${compartment_ocid}"
+									"ScopeCompartmentId": "${var.resource_compartment}"
 								},
 								"values": []
 							},
@@ -1152,7 +1152,7 @@
 								},
 								"values": [
 									{
-										"value": "${compartment_ocid}",
+										"value": "${var.resource_compartment}",
 										"label": "LogAnalytics"
 									}
 								]
@@ -1175,7 +1175,7 @@
 					"providerId": "log-analytics",
 					"providerVersion": "3.0.0",
 					"providerName": "Logging Analytics",
-					"compartmentId": "${compartment_ocid}",
+					"compartmentId": "${var.resource_compartment}",
 					"isOobSavedSearch": false,
 					"description": "Siebel Exception Codes",
 					"nls": {},
@@ -1229,7 +1229,7 @@
 									},
 									"values": [
 										{
-											"value": "${compartment_ocid}",
+											"value": "${var.resource_compartment}",
 											"label": "LogAnalytics"
 										}
 									]
@@ -1273,7 +1273,7 @@
 								},
 								"values": [
 									{
-										"value": "${compartment_ocid}",
+										"value": "${var.resource_compartment}",
 										"label": "LogAnalytics"
 									}
 								]
@@ -1333,7 +1333,7 @@
 					"providerId": "log-analytics",
 					"providerVersion": "3.0.0",
 					"providerName": "Logging Analytics",
-					"compartmentId": "${compartment_ocid}",
+					"compartmentId": "${var.resource_compartment}",
 					"isOobSavedSearch": false,
 					"description": "Siebel Exception Codes and Components Correlation",
 					"nls": {},
@@ -1629,7 +1629,7 @@
 					"providerId": "log-analytics",
 					"providerVersion": "2.0",
 					"providerName": "Logging Analytics",
-					"compartmentId": "${compartment_ocid}",
+					"compartmentId": "${var.resource_compartment}",
 					"isOobSavedSearch": false,
 					"description": "Exception Codes",
 					"nls": {},
@@ -1667,7 +1667,7 @@
 									"type": "Entity",
 									"flags": {
 										"IncludeDependents": true,
-										"ScopeCompartmentId": "${compartment_ocid}"
+										"ScopeCompartmentId": "${var.resource_compartment}"
 									},
 									"values": []
 								},
@@ -1683,7 +1683,7 @@
 									},
 									"values": [
 										{
-											"value": "${compartment_ocid}",
+											"value": "${var.resource_compartment}",
 											"label": "LogAnalytics"
 										}
 									]
@@ -1711,7 +1711,7 @@
 								"type": "Entity",
 								"flags": {
 									"IncludeDependents": true,
-									"ScopeCompartmentId": "${compartment_ocid}"
+									"ScopeCompartmentId": "${var.resource_compartment}"
 								},
 								"values": []
 							},
@@ -1727,7 +1727,7 @@
 								},
 								"values": [
 									{
-										"value": "${compartment_ocid}",
+										"value": "${var.resource_compartment}",
 										"label": "LogAnalytics"
 									}
 								]
@@ -1750,7 +1750,7 @@
 					"providerId": "log-analytics",
 					"providerVersion": "3.0.0",
 					"providerName": "Logging Analytics",
-					"compartmentId": "${compartment_ocid}",
+					"compartmentId": "${var.resource_compartment}",
 					"isOobSavedSearch": false,
 					"description": "Siebel Exception Codes",
 					"nls": {},
@@ -2056,7 +2056,7 @@
 					"providerId": "log-analytics",
 					"providerVersion": "2.0",
 					"providerName": "Logging Analytics",
-					"compartmentId": "${compartment_ocid}",
+					"compartmentId": "${var.resource_compartment}",
 					"isOobSavedSearch": false,
 					"description": "Components",
 					"nls": {},
@@ -2096,7 +2096,7 @@
 									"type": "Entity",
 									"flags": {
 										"IncludeDependents": true,
-										"ScopeCompartmentId": "${compartment_ocid}"
+										"ScopeCompartmentId": "${var.resource_compartment}"
 									},
 									"values": []
 								},
@@ -2112,7 +2112,7 @@
 									},
 									"values": [
 										{
-											"value": "${compartment_ocid}",
+											"value": "${var.resource_compartment}",
 											"label": "LogAnalytics"
 										}
 									]
@@ -2140,7 +2140,7 @@
 								"type": "Entity",
 								"flags": {
 									"IncludeDependents": true,
-									"ScopeCompartmentId": "${compartment_ocid}"
+									"ScopeCompartmentId": "${var.resource_compartment}"
 								},
 								"values": []
 							},
@@ -2156,7 +2156,7 @@
 								},
 								"values": [
 									{
-										"value": "${compartment_ocid}",
+										"value": "${var.resource_compartment}",
 										"label": "LogAnalytics"
 									}
 								]
@@ -2179,7 +2179,7 @@
 					"providerId": "log-analytics",
 					"providerVersion": "2.0",
 					"providerName": "Logging Analytics",
-					"compartmentId": "${compartment_ocid}",
+					"compartmentId": "${var.resource_compartment}",
 					"isOobSavedSearch": false,
 					"description": "Siebel Log Sources - Trend",
 					"nls": {},
@@ -2218,7 +2218,7 @@
 									"type": "Entity",
 									"flags": {
 										"IncludeDependents": true,
-										"ScopeCompartmentId": "${compartment_ocid}"
+										"ScopeCompartmentId": "${var.resource_compartment}"
 									},
 									"values": []
 								},
@@ -2234,7 +2234,7 @@
 									},
 									"values": [
 										{
-											"value": "${compartment_ocid}",
+											"value": "${var.resource_compartment}",
 											"label": "LogAnalytics"
 										}
 									]
@@ -2262,7 +2262,7 @@
 								"type": "Entity",
 								"flags": {
 									"IncludeDependents": true,
-									"ScopeCompartmentId": "${compartment_ocid}"
+									"ScopeCompartmentId": "${var.resource_compartment}"
 								},
 								"values": []
 							},
@@ -2278,7 +2278,7 @@
 								},
 								"values": [
 									{
-										"value": "${compartment_ocid}",
+										"value": "${var.resource_compartment}",
 										"label": "LogAnalytics"
 									}
 								]
@@ -2301,7 +2301,7 @@
 					"providerId": "log-analytics",
 					"providerVersion": "2.0",
 					"providerName": "Logging Analytics",
-					"compartmentId": "${compartment_ocid}",
+					"compartmentId": "${var.resource_compartment}",
 					"isOobSavedSearch": false,
 					"description": "Security: Activity Trends on DBs ",
 					"nls": {},
@@ -2342,7 +2342,7 @@
 									"type": "Entity",
 									"flags": {
 										"IncludeDependents": true,
-										"ScopeCompartmentId": "${compartment_ocid}"
+										"ScopeCompartmentId": "${var.resource_compartment}"
 									},
 									"values": []
 								},
@@ -2358,7 +2358,7 @@
 									},
 									"values": [
 										{
-											"value": "${compartment_ocid}",
+											"value": "${var.resource_compartment}",
 											"label": "LogAnalytics"
 										}
 									]
@@ -2386,7 +2386,7 @@
 								"type": "Entity",
 								"flags": {
 									"IncludeDependents": true,
-									"ScopeCompartmentId": "${compartment_ocid}"
+									"ScopeCompartmentId": "${var.resource_compartment}"
 								},
 								"values": []
 							},
@@ -2402,7 +2402,7 @@
 								},
 								"values": [
 									{
-										"value": "${compartment_ocid}",
+										"value": "${var.resource_compartment}",
 										"label": "LogAnalytics"
 									}
 								]
@@ -2425,7 +2425,7 @@
 					"providerId": "log-analytics",
 					"providerVersion": "2.0",
 					"providerName": "Logging Analytics",
-					"compartmentId": "${compartment_ocid}",
+					"compartmentId": "${var.resource_compartment}",
 					"isOobSavedSearch": false,
 					"description": "Database Entities with Log Errors",
 					"nls": {},
@@ -2465,7 +2465,7 @@
 									"type": "Entity",
 									"flags": {
 										"IncludeDependents": true,
-										"ScopeCompartmentId": "${compartment_ocid}"
+										"ScopeCompartmentId": "${var.resource_compartment}"
 									},
 									"values": []
 								},
@@ -2481,7 +2481,7 @@
 									},
 									"values": [
 										{
-											"value": "${compartment_ocid}",
+											"value": "${var.resource_compartment}",
 											"label": "LogAnalytics"
 										}
 									]
@@ -2509,7 +2509,7 @@
 								"type": "Entity",
 								"flags": {
 									"IncludeDependents": true,
-									"ScopeCompartmentId": "${compartment_ocid}"
+									"ScopeCompartmentId": "${var.resource_compartment}"
 								},
 								"values": []
 							},
@@ -2525,7 +2525,7 @@
 								},
 								"values": [
 									{
-										"value": "${compartment_ocid}",
+										"value": "${var.resource_compartment}",
 										"label": "LogAnalytics"
 									}
 								]
@@ -2548,7 +2548,7 @@
 					"providerId": "log-analytics",
 					"providerVersion": "2.0",
 					"providerName": "Logging Analytics",
-					"compartmentId": "${compartment_ocid}",
+					"compartmentId": "${var.resource_compartment}",
 					"isOobSavedSearch": false,
 					"description": "Siebel Error Labels",
 					"nls": {},
@@ -2584,7 +2584,7 @@
 									"type": "Entity",
 									"flags": {
 										"IncludeDependents": true,
-										"ScopeCompartmentId": "${compartment_ocid}"
+										"ScopeCompartmentId": "${var.resource_compartment}"
 									},
 									"values": []
 								},
@@ -2600,7 +2600,7 @@
 									},
 									"values": [
 										{
-											"value": "${compartment_ocid}",
+											"value": "${var.resource_compartment}",
 											"label": "LogAnalytics"
 										}
 									]
@@ -2628,7 +2628,7 @@
 								"type": "Entity",
 								"flags": {
 									"IncludeDependents": true,
-									"ScopeCompartmentId": "${compartment_ocid}"
+									"ScopeCompartmentId": "${var.resource_compartment}"
 								},
 								"values": []
 							},
@@ -2644,7 +2644,7 @@
 								},
 								"values": [
 									{
-										"value": "${compartment_ocid}",
+										"value": "${var.resource_compartment}",
 										"label": "LogAnalytics"
 									}
 								]
@@ -2667,7 +2667,7 @@
 					"providerId": "log-analytics",
 					"providerVersion": "2.0",
 					"providerName": "Logging Analytics",
-					"compartmentId": "${compartment_ocid}",
+					"compartmentId": "${var.resource_compartment}",
 					"isOobSavedSearch": false,
 					"description": "Database Logs Trend",
 					"nls": {},
@@ -2708,7 +2708,7 @@
 									"type": "Entity",
 									"flags": {
 										"IncludeDependents": true,
-										"ScopeCompartmentId": "${compartment_ocid}"
+										"ScopeCompartmentId": "${var.resource_compartment}"
 									},
 									"values": []
 								},
@@ -2724,7 +2724,7 @@
 									},
 									"values": [
 										{
-											"value": "${compartment_ocid}",
+											"value": "${var.resource_compartment}",
 											"label": "LogAnalytics"
 										}
 									]
@@ -2752,7 +2752,7 @@
 								"type": "Entity",
 								"flags": {
 									"IncludeDependents": true,
-									"ScopeCompartmentId": "${compartment_ocid}"
+									"ScopeCompartmentId": "${var.resource_compartment}"
 								},
 								"values": []
 							},
@@ -2768,7 +2768,7 @@
 								},
 								"values": [
 									{
-										"value": "${compartment_ocid}",
+										"value": "${var.resource_compartment}",
 										"label": "LogAnalytics"
 									}
 								]
